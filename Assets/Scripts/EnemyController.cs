@@ -19,4 +19,23 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Bullet"))
+        {
+            DestroyObjects(col);
+        }
+    }
+
+    /// <summary>
+    /// 弾と敵の破壊処理
+    /// </summary>
+    /// <param name="col"></param>
+    private void DestroyObjects(Collider2D col)
+    {
+        Destroy(col.gameObject);
+
+        Destroy(gameObject);
+    }
 }
