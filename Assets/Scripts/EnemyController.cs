@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class EnemyController : MonoBehaviour
 {
+    public int hp;
+
+
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -24,7 +27,12 @@ public class EnemyController : MonoBehaviour
     {
         if (col.CompareTag("Bullet"))
         {
-            DestroyObjects(col);
+            DestroyBullet(col);
+
+            if (col.TryGetComponent(out Bullet bullet))
+            {
+                UpdateHp(bullet);
+            }
         }
     }
 
@@ -32,10 +40,25 @@ public class EnemyController : MonoBehaviour
     /// 弾と敵の破壊処理
     /// </summary>
     /// <param name="col"></param>
-    private void DestroyObjects(Collider2D col)
+    private void DestroyBullet(Collider2D col)
     {
         Destroy(col.gameObject);
+    }
 
-        Destroy(gameObject);
+    /// <summary>
+    /// HPの更新処理と敵の破壊確認処理
+    /// </summary>
+    private void UpdateHp(Bullet bullet)
+    {
+        hp -= bullet.bulletPower;
+
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log($"残りHP : {hp}");
+        }
     }
 }

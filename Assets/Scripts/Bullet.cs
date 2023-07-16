@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
 {
     public float bulletSpeed;
 
+    public int bulletPower;
+
 
     /// <summary>
     /// 弾発射
