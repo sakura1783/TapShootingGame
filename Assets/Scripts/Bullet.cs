@@ -11,9 +11,9 @@ public class Bullet : MonoBehaviour
     /// <summary>
     /// 弾発射
     /// </summary>
-    public void ShotBullet()
+    public void ShotBullet(Vector3 direction)
     {
-        GetComponent<Rigidbody2D>().AddForce(transform.up * bulletSpeed);
+        GetComponent<Rigidbody2D>().AddForce(direction * bulletSpeed);
 
         Destroy(gameObject, 5);
     }
