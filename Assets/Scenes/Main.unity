@@ -371,6 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   durability: 100
+  txtDurability: {fileID: 1854246229}
 --- !u!50 &157418625
 Rigidbody2D:
   serializedVersion: 4
