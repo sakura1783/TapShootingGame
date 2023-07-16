@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour
 {
     public int hp;
 
+    public int attackPower;
+
 
     void Start()
     {
