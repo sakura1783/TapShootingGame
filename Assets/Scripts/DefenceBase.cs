@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 //侵入判定のコライダーは子オブジェクトにアタッチされている。その場合、Rigidbodyをつけることにより、親子関係のあるゲームオブジェクトのコライダーの情報を利用することができるようになる
 [RequireComponent(typeof(Rigidbody2D))]
@@ -10,6 +11,8 @@ public class DefenceBase : MonoBehaviour
     public int durability;
 
     [SerializeField] private Text txtDurability;
+
+    [SerializeField] private Slider slider;
 
     private int maxDurability;
 
@@ -58,6 +61,7 @@ public class DefenceBase : MonoBehaviour
     {
         txtDurability.text = durability + "/" + maxDurability;
 
-        //TODO ゲージの表示を耐久力の値に合わせて更新
+        //ゲージの表示を耐久力の値に合わせて更新(最初はdurability / maxDurabilityの結果が1になるので、ゲージは最大値になる)
+        slider.DOValue((float)durability / maxDurability, 0.25f);
     }
 }

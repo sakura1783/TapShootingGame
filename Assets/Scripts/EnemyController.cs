@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class EnemyController : MonoBehaviour
 {
     public int hp;
+    private int maxHp;
 
     public int attackPower;
+
+    [SerializeField] private Slider slider;
 
 
     void Start()
     {
         Application.targetFrameRate = 60;
+
+        maxHp = hp;
+
+        DisplayHpGauge();
     }
 
     void Update()
@@ -54,6 +63,10 @@ public class EnemyController : MonoBehaviour
     {
         hp -= bullet.bulletPower;
 
+        hp = Mathf.Clamp(hp, 0, maxHp);
+
+        DisplayHpGauge();
+
         if (hp <= 0)
         {
             Destroy(gameObject);
@@ -62,5 +75,13 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log($"残りHP : {hp}");
         }
+    }
+
+    /// <summary>
+    /// HPゲージの表示更新
+    /// </summary>
+    private void DisplayHpGauge()
+    {
+        slider.DOValue((float)hp / maxHp, 0.25f);
     }
 }
