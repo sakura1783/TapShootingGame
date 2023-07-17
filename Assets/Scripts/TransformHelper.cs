@@ -4,9 +4,7 @@ public static class TransformHelper
 {
     private static Transform temporaryObjectContainerTran;
 
-    /// <summary>
-    /// temporaryObjectContainerTran変数のプロパティ
-    /// </summary>
+    //temporaryObjectContainerTran変数のプロパティ
     public static Transform TemporaryObjectContainerTran
     {
         get { return temporaryObjectContainerTran; }

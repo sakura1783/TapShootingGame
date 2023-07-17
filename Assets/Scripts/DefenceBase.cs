@@ -66,6 +66,8 @@ public class DefenceBase : MonoBehaviour
             Debug.Log("ゲームオーバー");
 
             gameManager.SwitchGameUp(true);
+
+            gameManager.PrepareGameOver();
         }
     }
 

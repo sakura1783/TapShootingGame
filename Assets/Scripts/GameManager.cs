@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         TransformHelper.TemporaryObjectContainerTran = temporaryObjectContainerTran;
 
         uiManager.HideGameClearSet();
+        uiManager.HideGameOverSet();
     }
 
     /// <summary>
@@ -50,5 +51,13 @@ public class GameManager : MonoBehaviour
     public void PrepareGameClear()
     {
         uiManager.DisplayGameClearSet();
+    }
+
+    /// <summary>
+    /// ゲームオーバーの準備
+    /// </summary>
+    public void PrepareGameOver()
+    {
+        uiManager.DisplayGameOverSet();
     }
 }
