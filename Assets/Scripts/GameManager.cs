@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private EnemyGenerator enemyGenerator;
 
+    [SerializeField] private Transform temporaryObjectContainerTran;
+
 
     void Start()
     {
@@ -22,6 +24,9 @@ public class GameManager : MonoBehaviour
         playerController.SetUpPlayerController(this);
 
         enemyGenerator.SetUpEnemyGenerator(this);
+
+        //TransformHelper.SetTemporaryObjectContainerTran(temporaryObjectContainerTran);
+        TransformHelper.TemporaryObjectContainerTran = temporaryObjectContainerTran;
     }
 
     /// <summary>

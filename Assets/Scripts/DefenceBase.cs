@@ -18,6 +18,8 @@ public class DefenceBase : MonoBehaviour
 
     private GameManager gameManager;
 
+    [SerializeField] private GameObject enemyAttackEffectPrefab;
+
 
     public void SetUpDefenceBase(GameManager gameManager)
     {
@@ -38,6 +40,8 @@ public class DefenceBase : MonoBehaviour
             {
                 UpdateDurability(enemy);
             }
+
+            GenerateEnemyAttackEffect(col.gameObject.transform);
 
             Destroy(col.gameObject);
         }
@@ -74,5 +78,18 @@ public class DefenceBase : MonoBehaviour
 
         //ゲージの表示を耐久力の値に合わせて更新(最初はdurability / maxDurabilityの結果が1になるので、ゲージは最大値になる)
         slider.DOValue((float)durability / maxDurability, 0.25f);
+    }
+
+    /// <summary>
+    /// 敵が拠点に侵入した際の攻撃演出用のパーティクル生成
+    /// </summary>
+    private void GenerateEnemyAttackEffect(Transform enemyTran)
+    {
+        GameObject particle = Instantiate(enemyAttackEffectPrefab, enemyTran, false);
+
+        //particle.transform.SetParent(TransformHelper.GetTemporaryObjectContainerTran());
+        particle.transform.SetParent(TransformHelper.TemporaryObjectContainerTran);
+
+        Destroy(particle, 3);
     }
 }

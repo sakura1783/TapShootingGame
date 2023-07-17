@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7586388026545483761}
   - component: {fileID: 7586388026554022609}
   m_Layer: 0
-  m_Name: BulletEfect
+  m_Name: BulletEffect
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
