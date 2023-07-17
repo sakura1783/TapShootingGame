@@ -41,6 +41,8 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        Debug.Log($"ぶつかったゲームオブジェクト：{col.gameObject.name}");
+
         if (col.CompareTag("Bullet"))
         {
             DestroyBullet(col);

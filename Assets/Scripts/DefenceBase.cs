@@ -16,9 +16,13 @@ public class DefenceBase : MonoBehaviour
 
     private int maxDurability;
 
+    private GameManager gameManager;
 
-    void Start()
+
+    public void SetUpDefenceBase(GameManager gameManager)
     {
+        this.gameManager = gameManager;
+
         maxDurability = durability;
 
         DisplayDurability();
@@ -26,6 +30,8 @@ public class DefenceBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        Debug.Log($"ぶつかったゲームオブジェクト：{col.gameObject.name}");
+
         if (col.CompareTag("Enemy"))
         {
             if (col.TryGetComponent(out EnemyController enemy))
@@ -51,7 +57,12 @@ public class DefenceBase : MonoBehaviour
 
         DisplayDurability();
 
-        //TODO 耐久力が0以下になっていないか確認。0以下の場合、ゲームオーバー判定を行う
+        if (durability <= 0 && gameManager.isGameUp == false)
+        {
+            Debug.Log("ゲームオーバー");
+
+            gameManager.SwitchGameUp(true);
+        }
     }
 
     /// <summary>
