@@ -447,8 +447,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   durability: 100
-  txtDurability: {fileID: 1854246229}
-  slider: {fileID: 1657355184}
   enemyAttackEffectPrefab: {fileID: 4120970815149795566, guid: 92319e9f987844cb98687e8741db3476, type: 3}
 --- !u!50 &157418625
 Rigidbody2D:
