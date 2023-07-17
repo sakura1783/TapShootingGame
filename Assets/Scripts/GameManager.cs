@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Transform temporaryObjectContainerTran;
 
+    public UIManager uiManager;
+
 
     void Start()
     {
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour
 
         //TransformHelper.SetTemporaryObjectContainerTran(temporaryObjectContainerTran);
         TransformHelper.TemporaryObjectContainerTran = temporaryObjectContainerTran;
+
+        uiManager.HideGameClearSet();
     }
 
     /// <summary>
@@ -38,5 +42,13 @@ public class GameManager : MonoBehaviour
         isGameUp = isSwitch;
 
         //TODO ゲーム終了時には画面に残っている敵を全て破壊する
+    }
+
+    /// <summary>
+    /// ゲームクリアの準備
+    /// </summary>
+    public void PrepareGameClear()
+    {
+        uiManager.DisplayGameClearSet();
     }
 }

@@ -56,7 +56,7 @@ public class EnemyController : MonoBehaviour
             transform.localScale = Vector3.one * 2;
 
             //HPゲージを高い位置にする
-            slider.transform.position = new Vector3(0, 150, 0);
+            //slider.transform.position = new Vector3(0, 150, 0);
 
             hp *= 3;
         }

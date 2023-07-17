@@ -115,6 +115,7 @@ public class EnemyGenerator : MonoBehaviour
 
         gameManager.SwitchGameUp(isBossDestroyed);
 
-        //TODO ゲームクリアの準備
+        //ゲームクリアの準備
+        gameManager.PrepareGameClear();
     }
 }
