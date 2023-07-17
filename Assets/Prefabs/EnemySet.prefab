@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 30
-  attackPower: 20
+  attackPower: 40
   slider: {fileID: 7707717561447196376}
 --- !u!1 &7707717560182887066
 GameObject:

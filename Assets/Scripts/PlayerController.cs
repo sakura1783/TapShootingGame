@@ -6,9 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject bulletPrefab;
 
+    private GameManager gameManager;
+
 
     void Update()
     {
+        if (gameManager.isGameUp)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 tapPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -23,6 +30,11 @@ public class PlayerController : MonoBehaviour
 
             GenerateBullet(direction);
         }
+    }
+
+    public void SetUpPlayerController(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
     }
 
     /// <summary>

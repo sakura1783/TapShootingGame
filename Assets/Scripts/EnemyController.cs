@@ -24,10 +24,10 @@ public class EnemyController : MonoBehaviour
     {
         transform.Translate(0, -0.01f, 0);
 
-        if (transform.localPosition.y < -1300)
-        {
-            Destroy(gameObject);
-        }
+        //if (transform.localPosition.y < -1300)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     public void SetUpEnemyController()

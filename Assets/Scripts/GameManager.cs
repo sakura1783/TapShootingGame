@@ -8,12 +8,20 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private DefenceBase defenceBase;
 
+    [SerializeField] private PlayerController playerController;
+
+    [SerializeField] private EnemyGenerator enemyGenerator;
+
 
     void Start()
     {
         SwitchGameUp(false);
 
         defenceBase.SetUpDefenceBase(this);
+
+        playerController.SetUpPlayerController(this);
+
+        enemyGenerator.SetUpEnemyGenerator(this);
     }
 
     /// <summary>

@@ -1511,6 +1511,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGameUp: 0
   defenceBase: {fileID: 157418624}
+  playerController: {fileID: 501556839}
+  enemyGenerator: {fileID: 252322660}
 --- !u!1 &1599667381
 GameObject:
   m_ObjectHideFlags: 0

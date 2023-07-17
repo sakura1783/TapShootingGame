@@ -12,10 +12,20 @@ public class EnemyGenerator : MonoBehaviour
 
     private float timer;
 
+    private GameManager gameManager;
+
 
     void Update()
     {
-        PrepareGenerateEnemy();
+        if (!gameManager.isGameUp)
+        {
+            PrepareGenerateEnemy();
+        }
+    }
+
+    public void SetUpEnemyGenerator(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
     }
 
     /// <summary>
