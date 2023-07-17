@@ -14,8 +14,7 @@ public class EnemyController : MonoBehaviour
     private int hp;
     private int maxHp;
 
-    //TODO あとで削除する
-    public int attackPower;
+    //public int attackPower;
 
     [SerializeField] private Slider slider;
 

@@ -51,7 +51,7 @@ public class DefenceBase : MonoBehaviour
     /// <param name="enemy"></param>
     private void UpdateDurability(EnemyController enemy)
     {
-        durability -= enemy.attackPower;
+        durability -= enemy.enemyData.attackPoint;
 
         durability = Mathf.Clamp(durability, 0, maxDurability);
 
