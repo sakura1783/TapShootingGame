@@ -7,16 +7,21 @@ using DG.Tweening;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class EnemyController : MonoBehaviour
 {
-    public int hp;
+    public EnemyDataSO.EnemyData enemyData;
+
+    [SerializeField] private Image imgEnemy;
+
+    private int hp;
     private int maxHp;
 
+    //TODO あとで削除する
     public int attackPower;
 
     [SerializeField] private Slider slider;
 
     [SerializeField] private GameObject bulletEfectPrefab;
 
-    private bool isBoss;
+    //private bool isBoss;
 
     private EnemyGenerator enemyGenerator;
 
@@ -28,7 +33,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (!isBoss)
+        if (enemyData.enemyType != EnemyType.Boss)
         {
             transform.Translate(0, -0.01f, 0);
         }
@@ -39,11 +44,14 @@ public class EnemyController : MonoBehaviour
         //}
     }
 
-    public void SetUpEnemyController(bool isBoss = false)
+    public void SetUpEnemyController(EnemyDataSO.EnemyData enemyData, EnemyGenerator enemyGenerator)
     {
-        this.isBoss = isBoss;
+        this.enemyData = enemyData;
+        this.enemyGenerator = enemyGenerator;
 
-        if (!this.isBoss)
+        //this.isBoss = isBoss;
+
+        if (this.enemyData.enemyType != EnemyType.Boss)
         {
             transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-400, 400), transform.localPosition.y, 0);
         }
@@ -53,15 +61,19 @@ public class EnemyController : MonoBehaviour
             transform.DOLocalMoveY(transform.position.y - 500, 3);
 
             //大きさを2倍にする
-            transform.localScale = Vector3.one * 2;
+            transform.localScale = Vector3.one * 1.5f;
 
             //HPゲージを高い位置にする
-            //slider.transform.position = new Vector3(0, 150, 0);
+            slider.transform.localPosition = new Vector3(0, 170, 0);
 
-            hp *= 3;
+            //hp *= 3;
         }
 
-        maxHp = hp;
+        imgEnemy.sprite = this.enemyData.enemySprite;
+
+        maxHp = this.enemyData.hp;
+
+        hp = maxHp;
 
         DisplayHpGauge();
     }
@@ -70,15 +82,13 @@ public class EnemyController : MonoBehaviour
     /// EnemyControllerの追加設定
     /// </summary>
     /// <param name="enemyGenerator"></param>
-    public void AdditionalSetUpEnemyController(EnemyGenerator enemyGenerator)
-    {
-        this.enemyGenerator = enemyGenerator;
-    }
+    //public void AdditionalSetUpEnemyController(EnemyGenerator enemyGenerator)
+    //{
+    //    this.enemyGenerator = enemyGenerator;
+    //}
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log($"ぶつかったゲームオブジェクト：{col.gameObject.name}");
-
         if (col.CompareTag("Bullet"))
         {
             DestroyBullet(col);
@@ -114,7 +124,7 @@ public class EnemyController : MonoBehaviour
 
         if (hp <= 0)
         {
-            if (isBoss)
+            if (enemyData.enemyType == EnemyType.Boss)
             {
                 enemyGenerator.SwitchBossDestroyed(true);
             }

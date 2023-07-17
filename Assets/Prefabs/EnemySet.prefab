@@ -105,7 +105,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc0c44afb1a6a49b8b5dba094c1fda8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 30
+  enemyData:
+    enemyNo: 0
+    hp: 0
+    attackPoint: 0
+    enemySprite: {fileID: 0}
+    enemyType: 0
+  imgEnemy: {fileID: 7707717561334529048}
   attackPower: 40
   slider: {fileID: 7707717561447196376}
   bulletEfectPrefab: {fileID: 7586388026564742961, guid: 74b4d4e2d3c744c9b8a3e86ae3eb8f7d, type: 3}
@@ -373,7 +379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: 30}
   m_SizeDelta: {x: 150, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7707717561447196376
