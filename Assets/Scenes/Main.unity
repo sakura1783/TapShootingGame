@@ -2417,6 +2417,8 @@ MonoBehaviour:
   gameClearSetCanvasGroup: {fileID: 1328722231}
   gameOverSetCanvasGroup: {fileID: 234276902}
   txtGameOver: {fileID: 1116023333}
+  txtDurability: {fileID: 1854246229}
+  slider: {fileID: 1657355184}
 --- !u!1 &1756101568
 GameObject:
   m_ObjectHideFlags: 0

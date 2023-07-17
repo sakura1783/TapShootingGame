@@ -10,9 +10,9 @@ public class DefenceBase : MonoBehaviour
 {
     public int durability;
 
-    [SerializeField] private Text txtDurability;
+    //[SerializeField] private Text txtDurability;
 
-    [SerializeField] private Slider slider;
+    //[SerializeField] private Slider slider;
 
     private int maxDurability;
 
@@ -27,7 +27,7 @@ public class DefenceBase : MonoBehaviour
 
         maxDurability = durability;
 
-        DisplayDurability();
+        this.gameManager.uiManager.DisplayDurability(durability, maxDurability);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -59,7 +59,7 @@ public class DefenceBase : MonoBehaviour
 
         Debug.Log($"残りの耐久力：{durability}");
 
-        DisplayDurability();
+        gameManager.uiManager.DisplayDurability(durability, maxDurability);
 
         if (durability <= 0 && gameManager.isGameUp == false)
         {
@@ -74,13 +74,13 @@ public class DefenceBase : MonoBehaviour
     /// <summary>
     /// 耐久力の表示更新
     /// </summary>
-    private void DisplayDurability()
-    {
-        txtDurability.text = durability + "/" + maxDurability;
+    //private void DisplayDurability()
+    //{
+    //    txtDurability.text = durability + "/" + maxDurability;
 
-        //ゲージの表示を耐久力の値に合わせて更新(最初はdurability / maxDurabilityの結果が1になるので、ゲージは最大値になる)
-        slider.DOValue((float)durability / maxDurability, 0.25f);
-    }
+    //    //ゲージの表示を耐久力の値に合わせて更新(最初はdurability / maxDurabilityの結果が1になるので、ゲージは最大値になる)
+    //    slider.DOValue((float)durability / maxDurability, 0.25f);
+    //}
 
     /// <summary>
     /// 敵が拠点に侵入した際の攻撃演出用のパーティクル生成
