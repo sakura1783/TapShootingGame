@@ -18,10 +18,6 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60;
-
-        maxHp = hp;
-
-        DisplayHpGauge();
     }
 
     void Update()
@@ -32,6 +28,15 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SetUpEnemyController()
+    {
+        transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-400, 400), transform.localPosition.y, 0);
+
+        maxHp = hp;
+
+        DisplayHpGauge();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
