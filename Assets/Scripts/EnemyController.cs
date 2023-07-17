@@ -16,6 +16,10 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private GameObject bulletEfectPrefab;
 
+    private bool isBoss;
+
+    private EnemyGenerator enemyGenerator;
+
 
     void Start()
     {
@@ -24,7 +28,10 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(0, -0.01f, 0);
+        if (!isBoss)
+        {
+            transform.Translate(0, -0.01f, 0);
+        }
 
         //if (transform.localPosition.y < -1300)
         //{
@@ -32,13 +39,40 @@ public class EnemyController : MonoBehaviour
         //}
     }
 
-    public void SetUpEnemyController()
+    public void SetUpEnemyController(bool isBoss = false)
     {
-        transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-400, 400), transform.localPosition.y, 0);
+        this.isBoss = isBoss;
+
+        if (!this.isBoss)
+        {
+            transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-400, 400), transform.localPosition.y, 0);
+        }
+        else
+        {
+            //徐々に下方向に移動
+            transform.DOLocalMoveY(transform.position.y - 500, 3);
+
+            //大きさを2倍にする
+            transform.localScale = Vector3.one * 2;
+
+            //HPゲージを高い位置にする
+            slider.transform.position = new Vector3(0, 150, 0);
+
+            hp *= 3;
+        }
 
         maxHp = hp;
 
         DisplayHpGauge();
+    }
+
+    /// <summary>
+    /// EnemyControllerの追加設定
+    /// </summary>
+    /// <param name="enemyGenerator"></param>
+    public void AdditionalSetUpEnemyController(EnemyGenerator enemyGenerator)
+    {
+        this.enemyGenerator = enemyGenerator;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -80,6 +114,11 @@ public class EnemyController : MonoBehaviour
 
         if (hp <= 0)
         {
+            if (isBoss)
+            {
+                enemyGenerator.SwitchBossDestroyed(true);
+            }
+
             Destroy(gameObject);
         }
         else
