@@ -25,5 +25,6 @@ public class EnemyDataSO : ScriptableObject
         public int attackPoint;
         public Sprite enemySprite;
         public EnemyType enemyType;
+        public int exp;
     }
 }
