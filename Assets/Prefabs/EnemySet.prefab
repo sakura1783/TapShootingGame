@@ -108,6 +108,7 @@ MonoBehaviour:
   hp: 30
   attackPower: 40
   slider: {fileID: 7707717561447196376}
+  bulletEfectPrefab: {fileID: 7586388026564742961, guid: 74b4d4e2d3c744c9b8a3e86ae3eb8f7d, type: 3}
 --- !u!1 &7707717560182887066
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private Slider slider;
 
+    [SerializeField] private GameObject bulletEfectPrefab;
+
 
     void Start()
     {
@@ -50,6 +52,8 @@ public class EnemyController : MonoBehaviour
             if (col.TryGetComponent(out Bullet bullet))
             {
                 UpdateHp(bullet);
+
+                GenerateBulletEfect(col.gameObject.transform);
             }
         }
     }
@@ -90,5 +94,18 @@ public class EnemyController : MonoBehaviour
     private void DisplayHpGauge()
     {
         slider.DOValue((float)hp / maxHp, 0.25f);
+    }
+
+    /// <summary>
+    /// 被弾時のヒット演出用のパーティクル生成
+    /// </summary>
+    /// <param name="bulletTran"></param>
+    private void GenerateBulletEfect(Transform bulletTran)
+    {
+        GameObject particle = Instantiate(bulletEfectPrefab, bulletTran, false);
+
+        particle.transform.SetParent(transform);
+
+        Destroy(particle, 3);
     }
 }
