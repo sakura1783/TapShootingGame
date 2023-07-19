@@ -8,6 +8,10 @@ public class GameData : MonoBehaviour
 
     [SerializeField] private int totalExp;
 
+    [SerializeField] private int durabilityBase;
+
+    //[SerializeField] private int maxGenerateCountBase;
+
 
     private void Awake()
     {
@@ -39,4 +43,22 @@ public class GameData : MonoBehaviour
     {
         return totalExp;
     }
+
+    /// <summary>
+    /// 拠点の耐久力の値を取得
+    /// </summary>
+    /// <returns></returns>
+    public int GetDurability()
+    {
+        return durabilityBase;
+    }
+
+    /// <summary>
+    /// エネミーの最大生成数の値を取得
+    /// </summary>
+    /// <returns></returns>
+    //public int GetMaxGenerateCount()
+    //{
+    //    return maxGenerateCountBase;
+    //}
 }

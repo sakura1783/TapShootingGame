@@ -2332,6 +2332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalExp: 0
+  durabilityBase: 200
 --- !u!1 &1572101795
 GameObject:
   m_ObjectHideFlags: 0
