@@ -111,9 +111,13 @@ MonoBehaviour:
     attackPoint: 0
     enemySprite: {fileID: 0}
     enemyType: 0
+    exp: 0
+    moveDuration: 0
+    moveType: 0
   imgEnemy: {fileID: 7707717561334529048}
   slider: {fileID: 7707717561447196376}
   bulletEfectPrefab: {fileID: 7586388026564742961, guid: 74b4d4e2d3c744c9b8a3e86ae3eb8f7d, type: 3}
+  enemyBulletPrefab: {fileID: 7066281129732370577, guid: 9860af28a9c354c5583a9ff609348a9f, type: 3}
 --- !u!1 &7707717560182887066
 GameObject:
   m_ObjectHideFlags: 0

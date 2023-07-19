@@ -21,6 +21,8 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private GameObject bulletEfectPrefab;
 
+    [SerializeField] private GameObject enemyBulletPrefab;
+
     //private bool isBoss;
 
     private EnemyGenerator enemyGenerator;
@@ -86,6 +88,11 @@ public class EnemyController : MonoBehaviour
 
         //Invokeメソッドを実行すると、moveEvent変数に登録されたメソッド(今回は移動用のメソッド)を実行する
         moveEvent.Invoke(transform, enemyData.moveDuration);
+
+        if (enemyData.moveType == MoveType.Straight)
+        {
+            StartCoroutine(EnemyShot());
+        }
     }
 
     /// <summary>
@@ -169,6 +176,20 @@ public class EnemyController : MonoBehaviour
         particle.transform.SetParent(transform);
 
         Destroy(particle, 3);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator EnemyShot()
+    {
+        while (true)  //<= 条件にtrueを指定すると無制限のループ処理になる
+        {
+            Instantiate(enemyBulletPrefab, transform).GetComponent<Bullet>().ShotBullet(-transform.up);
+
+            yield return new WaitForSeconds(5);
+        }
     }
 
     /// <summary>
