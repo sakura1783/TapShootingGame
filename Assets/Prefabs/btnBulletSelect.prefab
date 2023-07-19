@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 4826127146082175512}
   - component: {fileID: 4826127146082175527}
   - component: {fileID: 4826127146082175526}
+  - component: {fileID: 596140382220808800}
   m_Layer: 5
   m_Name: btnBulletSelect
   m_TagString: Untagged
@@ -200,6 +201,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &596140382220808800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4826127146082175524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d879cb400ff274893a048c467b6fb4ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btnBulletSelect: {fileID: 4826127146082175526}
 --- !u!1 &4826127146117760253
 GameObject:
   m_ObjectHideFlags: 0
