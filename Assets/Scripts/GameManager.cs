@@ -42,7 +42,13 @@ public class GameManager : MonoBehaviour
     {
         isGameUp = isSwitch;
 
-        //TODO ゲーム終了時には画面に残っている敵を全て破壊する
+        //ゲーム終了時には画面に残っている敵と一時的に存在しているゲームオブジェクトを全て破壊する
+        if (isGameUp)
+        {
+            enemyGenerator.ClearEnemiesList();
+
+            enemyGenerator.DestroyTemporaryObjectContainer();
+        }
     }
 
     /// <summary>
@@ -59,5 +65,15 @@ public class GameManager : MonoBehaviour
     public void PrepareGameOver()
     {
         uiManager.DisplayGameOverSet();
+    }
+
+    /// <summary>
+    /// プレイヤーと敵との位置から方向を判定
+    /// </summary>
+    /// <param name="enemyPos"></param>
+    /// <returns></returns>
+    public Vector3 GetPlayerDirection(Vector3 enemyPos)
+    {
+        return (playerController.transform.position - enemyPos).normalized;
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private EnemyController enemyPrefab;
 
     [SerializeField] private float prepareTime;
 
@@ -29,6 +29,8 @@ public class EnemyGenerator : MonoBehaviour
     //public List<EnemyDataSO.EnemyData> bossEnemyDatas = new List<EnemyDataSO.EnemyData>();
 
     public MoveEventSO moveEventSO;
+
+    [SerializeField] private List<EnemyController> enemiesList = new();
 
 
     //void Update()
@@ -283,7 +285,7 @@ public class EnemyGenerator : MonoBehaviour
     /// </summary>
     private void SpawnEnemy()
     {
-        EnemyController enemy = Instantiate(enemyPrefab, transform, false).GetComponent<EnemyController>();
+        EnemyController enemy = Instantiate(enemyPrefab, transform, false);
 
         CalculateTotalSpawnRate();
 
@@ -300,6 +302,8 @@ public class EnemyGenerator : MonoBehaviour
         Debug.Log($"生成した敵の種類は{spawnEnemyNo}番です");
 
         enemy.SetUpEnemyController(enemyDataSO.enemyDataList[spawnEnemyNo], this);
+
+        enemiesList.Add(enemy);
     }
 
     /// <summary>
@@ -336,6 +340,8 @@ public class EnemyGenerator : MonoBehaviour
         EnemyController boss = Instantiate(enemyPrefab, transform).GetComponent<EnemyController>();
 
         boss.SetUpEnemyController(enemyDataSO.enemyDataList[3], this);
+
+        enemiesList.Add(boss);
     }
 
     /// <summary>
@@ -347,5 +353,44 @@ public class EnemyGenerator : MonoBehaviour
         gameManager.uiManager.UpdateDisplayTotalExp(GameData.instance.GetTotalExp());
 
         //TODO 引数のexp変数は後々利用する
+    }
+
+    /// <summary>
+    /// プレイヤーと敵との位置から方向を判定する準備
+    /// </summary>
+    /// <param name="enemyPos"></param>
+    /// <returns></returns>
+    public Vector3 PrepareGetPlayerDirection(Vector3 enemyPos)
+    {
+        return gameManager.GetPlayerDirection(enemyPos);
+    }
+
+    /// <summary>
+    /// enemiesListに登録されている敵の内、シーンに残っている敵のゲームオブジェクトを破壊し、enemiesListをクリアする
+    /// </summary>
+    public void ClearEnemiesList()
+    {
+        for (int i = 0; i < enemiesList.Count; i++)
+        {
+            //要素が空ではない(プレイヤーに破壊されずにゲーム画面に残っている)なら
+            if (enemiesList[i] != null)
+            {
+                Destroy(enemiesList[i].gameObject);
+            }
+        }
+
+        enemiesList.Clear();
+    }
+
+    /// <summary>
+    /// 一時的に存在しているオブジェクト(弾、エフェクトなど)を全て破棄
+    /// </summary>
+    public void DestroyTemporaryObjectContainer()
+    {
+        //プロパティを利用した場合
+        Destroy(TransformHelper.TemporaryObjectContainerTran.gameObject);
+
+        //プロパティを利用しない場合
+        //Destroy(TransformHelper.GetTemporaryObjectContainerTran().gameObject);
     }
 }

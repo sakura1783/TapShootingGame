@@ -89,7 +89,7 @@ public class EnemyController : MonoBehaviour
         //Invokeメソッドを実行すると、moveEvent変数に登録されたメソッド(今回は移動用のメソッド)を実行する
         moveEvent.Invoke(transform, enemyData.moveDuration);
 
-        if (enemyData.moveType == MoveType.Straight)
+        if (enemyData.moveType == MoveType.Straight || enemyData.moveType == MoveType.Boss_Horizontal)
         {
             StartCoroutine(EnemyShot());
         }
@@ -186,7 +186,13 @@ public class EnemyController : MonoBehaviour
     {
         while (true)  //<= 条件にtrueを指定すると無制限のループ処理になる
         {
-            Instantiate(enemyBulletPrefab, transform).GetComponent<Bullet>().ShotBullet(-transform.up);
+            GameObject bullet = Instantiate(enemyBulletPrefab, transform);
+            bullet.GetComponent<Bullet>().ShotBullet(enemyGenerator.PrepareGetPlayerDirection(transform.position));
+
+            if (enemyData.moveType == MoveType.Boss_Horizontal)
+            {
+                bullet.transform.SetParent(TransformHelper.GetTemporaryObjectContainerTran());
+            }
 
             yield return new WaitForSeconds(5);
         }

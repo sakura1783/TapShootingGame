@@ -35,10 +35,24 @@ public class DefenceBase : MonoBehaviour
     {
         if (col.CompareTag("Enemy"))
         {
-            if (col.TryGetComponent(out EnemyController enemy))
+            int damage = 0;
+
+            //侵入してきたコライダーをオフにする(重複判定を防ぐため)
+            col.GetComponent<CapsuleCollider2D>().enabled = false;
+
+            //侵入してきたゲームオブジェクトにBulletクラスがアタッチされていたら
+            if (col.TryGetComponent(out Bullet bullet))
             {
-                UpdateDurability(enemy);
+                damage = bullet.bulletPower;
             }
+
+            //上のif文が処理されず、侵入してきたゲームオブジェクトにEnemyControllerクラスがアタッチされていたら
+            else if (col.TryGetComponent(out EnemyController enemy))
+            {
+                damage = enemy.enemyData.attackPoint;
+            }
+
+            UpdateDurability(damage);
 
             GenerateEnemyAttackEffect(col.gameObject.transform);
 
@@ -50,9 +64,9 @@ public class DefenceBase : MonoBehaviour
     /// 耐久力の更新
     /// </summary>
     /// <param name="enemy"></param>
-    private void UpdateDurability(EnemyController enemy)
+    private void UpdateDurability(int damage)
     {
-        durability -= enemy.enemyData.attackPoint;
+        durability -= damage;
 
         durability = Mathf.Clamp(durability, 0, maxDurability);
 

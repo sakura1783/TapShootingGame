@@ -569,11 +569,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb435eda45d34fd890676b913ff05c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7707717560033544969, guid: 2a19651d611054390ba9027ddd32ab77, type: 3}
+  enemyPrefab: {fileID: 7707717560033544971, guid: 2a19651d611054390ba9027ddd32ab77, type: 3}
   prepareTime: 2
   isBossDestroyed: 0
   enemyDataSO: {fileID: 11400000, guid: 5aaf067ec50f240a99cc75eee67174bf, type: 2}
   moveEventSO: {fileID: 11400000, guid: a8839b5125d1240e591b3dd7d813ce0a, type: 2}
+  enemiesList: []
   spawnDataList:
   - enemyNo: 0
     maxSpawnCount: 1
