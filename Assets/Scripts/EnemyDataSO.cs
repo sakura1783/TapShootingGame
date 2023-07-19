@@ -11,6 +11,13 @@ public enum EnemyType
     Boss,
 }
 
+public enum MoveType
+{
+    Straight,  //直進
+    Meandering,  //蛇行
+    Boss_Horizontal,  //ボス・水平移動
+}
+
 [CreateAssetMenu(fileName = "EnemyDataSO", menuName = "Create EnemyDataSO")]
 public class EnemyDataSO : ScriptableObject
 {
@@ -26,5 +33,7 @@ public class EnemyDataSO : ScriptableObject
         public Sprite enemySprite;
         public EnemyType enemyType;
         public int exp;
+        public float moveDuration;  //拠点までの移動時間
+        public MoveType moveType;
     }
 }

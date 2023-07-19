@@ -30,18 +30,18 @@ public class EnemyController : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
-    void Update()
-    {
-        if (enemyData.enemyType != EnemyType.Boss)
-        {
-            transform.Translate(0, -0.01f, 0);
-        }
+    //void Update()
+    //{
+    //    if (enemyData.enemyType != EnemyType.Boss)
+    //    {
+    //        transform.Translate(0, -0.01f, 0);
+    //    }
 
-        //if (transform.localPosition.y < -1300)
-        //{
-        //    Destroy(gameObject);
-        //}
-    }
+    //    //if (transform.localPosition.y < -1300)
+    //    //{
+    //    //    Destroy(gameObject);
+    //    //}
+    //}
 
     public void SetUpEnemyController(EnemyDataSO.EnemyData enemyData, EnemyGenerator enemyGenerator)
     {
@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour
         else
         {
             //徐々に下方向に移動
-            transform.DOLocalMoveY(transform.position.y - 500, 3);
+            //transform.DOLocalMoveY(transform.position.y - 500, 3);
 
             //大きさを2倍にする
             transform.localScale = Vector3.one * 1.5f;
@@ -75,6 +75,8 @@ public class EnemyController : MonoBehaviour
         hp = maxHp;
 
         DisplayHpGauge();
+
+        SetMoveByMoveType();
     }
 
     /// <summary>
@@ -133,10 +135,10 @@ public class EnemyController : MonoBehaviour
 
             Destroy(gameObject);
         }
-        else
-        {
-            Debug.Log($"残りHP : {hp}");
-        }
+        //else
+        //{
+        //    Debug.Log($"残りHP : {hp}");
+        //}
     }
 
     /// <summary>
@@ -158,5 +160,62 @@ public class EnemyController : MonoBehaviour
         particle.transform.SetParent(transform);
 
         Destroy(particle, 3);
+    }
+
+    /// <summary>
+    /// 移動タイプに応じた移動方法を選択して実行
+    /// </summary>
+    private void SetMoveByMoveType()
+    {
+        switch (enemyData.moveType)
+        {
+            case MoveType.Straight:
+                MoveStraight();
+                break;
+            case MoveType.Meandering:
+                MoveMeandering();
+                break;
+            case MoveType.Boss_Horizontal:
+                MoveBossHorizontal();
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 直進移動
+    /// </summary>
+    private void MoveStraight()
+    {
+        Debug.Log("直進");
+
+        transform.DOLocalMoveY(-3000, enemyData.moveDuration).SetLink(gameObject);
+    }
+
+    /// <summary>
+    /// 蛇行移動
+    /// </summary>
+    private void MoveMeandering()
+    {
+        Debug.Log("蛇行");
+
+        transform.DOLocalMoveX(transform.position.x + Random.Range(150, 200), 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear).SetLink(gameObject);
+        transform.DOLocalMoveY(-3000, enemyData.moveDuration).SetLink(gameObject);
+    }
+
+    /// <summary>
+    /// ボス・水平移動
+    /// </summary>
+    private void MoveBossHorizontal()
+    {
+        transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
+
+        transform.DOLocalMoveY(-500, 3).OnComplete(() =>
+        {
+            Sequence sequence = DOTween.Sequence().SetLink(gameObject);
+            sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + 400, 2.5f).SetEase(Ease.Linear));
+            sequence.Append(transform.DOLocalMoveX(transform.localPosition.x - 400, 5f).SetEase(Ease.Linear));
+            sequence.Append(transform.DOLocalMoveX(transform.localPosition.x, 2.5f).SetEase(Ease.Linear));
+            sequence.AppendInterval(1).SetLoops(-1, LoopType.Restart);  //LoopType.Restartは最初からやり直す
+        });
     }
 }
