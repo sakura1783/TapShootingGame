@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Text txtGameOver;
     [SerializeField] private Text txtDurability;
+    [SerializeField] private Text txtExp;
 
     [SerializeField] private Slider slider;
 
@@ -62,5 +63,14 @@ public class UIManager : MonoBehaviour
 
         //ゲージの表示を耐久力の値に合わせて更新(最初はdurability / maxDurabilityの結果が1になるので、ゲージは最大値になる)
         slider.DOValue((float)durability / maxDurability, 0.25f);
+    }
+
+    /// <summary>
+    /// TotalExpの更新
+    /// </summary>
+    /// <param name="totalExp"></param>
+    public void UpdateDisplayTotalExp(int totalExp)
+    {
+        txtExp.text = totalExp.ToString();
     }
 }

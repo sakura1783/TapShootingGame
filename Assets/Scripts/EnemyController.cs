@@ -128,6 +128,9 @@ public class EnemyController : MonoBehaviour
                 enemyGenerator.SwitchBossDestroyed(true);
             }
 
+            GameData.instance.UpdateTotalExp(enemyData.exp);
+            enemyGenerator.PrepareDisplayTotalExp(enemyData.exp);
+
             Destroy(gameObject);
         }
         else

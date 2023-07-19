@@ -335,4 +335,15 @@ public class EnemyGenerator : MonoBehaviour
 
         boss.SetUpEnemyController(enemyDataSO.enemyDataList[3], this);
     }
+
+    /// <summary>
+    /// TotalExpの表示更新準備
+    /// </summary>
+    /// <param name="exp"></param>
+    public void PrepareDisplayTotalExp(int exp)
+    {
+        gameManager.uiManager.UpdateDisplayTotalExp(GameData.instance.GetTotalExp());
+
+        //TODO 引数のexp変数は後々利用する
+    }
 }
