@@ -1276,6 +1276,7 @@ MonoBehaviour:
   bulletSelectDetailPrefab: {fileID: 596140382220808800, guid: 59ae2578acc4143b28468f6253d3cab2, type: 3}
   bulletButtonTran: {fileID: 487214442}
   bulletSelectDetailList: []
+  bulletDataSO: {fileID: 11400000, guid: 9ae264984d15445c4b91b3ec307919e3, type: 2}
 --- !u!4 &685350447
 Transform:
   m_ObjectHideFlags: 0
@@ -2445,6 +2446,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalExp: 0
   durabilityBase: 200
+  currentBulletData:
+    bulletNo: 0
+    bulletSpeed: 0
+    bulletPower: 0
+    Interval: 0
+    bulletType: 0
+    btnSprite: {fileID: 0}
+    userType: 0
+    needExp: 0
+    duration: 0
+    bulletSprite: {fileID: 0}
+    description: 
 --- !u!1 &1572101795
 GameObject:
   m_ObjectHideFlags: 0

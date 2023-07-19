@@ -44,6 +44,6 @@ public class PlayerController : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, transform);
 
-        bullet.GetComponent<Bullet>().ShotBullet(direction);
+        bullet.GetComponent<Bullet>().ShotBullet(direction, GameData.instance.GetCurrentBulletData());
     }
 }

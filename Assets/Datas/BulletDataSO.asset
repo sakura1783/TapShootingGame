@@ -14,13 +14,79 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDataList:
   - bulletNo: 0
-    bulletSpeed: 300
-    bulletPower: 10
-    Interval: 2
+    bulletSpeed: 250
+    bulletPower: 5
+    Interval: 0.1
     bulletType: 0
     btnSprite: {fileID: -2099913850, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
     needExp: 0
     duration: 7
     bulletSprite: {fileID: 182182450, guid: 8342b9534b53a4e6687f9bb3e8b95c04, type: 3}
-    description: "\u8449\u3063\u3071"
+    description: "\u8449"
+  - bulletNo: 1
+    bulletSpeed: 270
+    bulletPower: 10
+    Interval: 0.1
+    bulletType: 1
+    btnSprite: {fileID: 350365590, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
+    userType: 0
+    needExp: 0
+    duration: 6
+    bulletSprite: {fileID: 2043063868, guid: 7e8d2882cc69542c281cffb08b3aa6c7, type: 3}
+    description: "\u706B"
+  - bulletNo: 2
+    bulletSpeed: 300
+    bulletPower: 20
+    Interval: 0.1
+    bulletType: 2
+    btnSprite: {fileID: -161640022, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
+    userType: 0
+    needExp: 0
+    duration: 8
+    bulletSprite: {fileID: 21300000, guid: 473ddea0c45db402386b8aa34a354d2d, type: 3}
+    description: "\u6C37"
+  - bulletNo: 3
+    bulletSpeed: 350
+    bulletPower: 30
+    Interval: 0.1
+    bulletType: 3
+    btnSprite: {fileID: -344933440, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
+    userType: 0
+    needExp: 0
+    duration: 10
+    bulletSprite: {fileID: 21300000, guid: 03d70d2dc924a4cd3a5e4f13dd5f74ca, type: 3}
+    description: "\u96F7"
+  - bulletNo: 4
+    bulletSpeed: 60
+    bulletPower: 5
+    Interval: 2
+    bulletType: 4
+    btnSprite: {fileID: 0}
+    userType: 1
+    needExp: 0
+    duration: 0
+    bulletSprite: {fileID: 21300000, guid: 43b6c7418c6994470b745963fbe6021e, type: 3}
+    description: "\u6C34"
+  - bulletNo: 5
+    bulletSpeed: 70
+    bulletPower: 10
+    Interval: 2.5
+    bulletType: 5
+    btnSprite: {fileID: 0}
+    userType: 1
+    needExp: 0
+    duration: 0
+    bulletSprite: {fileID: 421529759, guid: 7e8d2882cc69542c281cffb08b3aa6c7, type: 3}
+    description: "\u706B"
+  - bulletNo: 6
+    bulletSpeed: 100
+    bulletPower: 15
+    Interval: 3
+    bulletType: 6
+    btnSprite: {fileID: 0}
+    userType: 2
+    needExp: 0
+    duration: 0
+    bulletSprite: {fileID: 21300000, guid: 53ceae4a0f0f647e5afbf91ce559df58, type: 3}
+    description: "\u95C7"

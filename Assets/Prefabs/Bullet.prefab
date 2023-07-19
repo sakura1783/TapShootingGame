@@ -128,5 +128,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3178add7a9c0344e19ff7c0116678d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 300
   bulletPower: 10
+  bulletData:
+    bulletNo: 0
+    bulletSpeed: 0
+    bulletPower: 0
+    Interval: 0
+    bulletType: 0
+    btnSprite: {fileID: 0}
+    userType: 0
+    needExp: 0
+    duration: 0
+    bulletSprite: {fileID: 0}
+    description: 
+  imgBullet: {fileID: 5271295984595667056}

@@ -12,6 +12,8 @@ public class GameData : MonoBehaviour
 
     //[SerializeField] private int maxGenerateCountBase;
 
+    [SerializeField] private BulletDataSO.BulletData currentBulletData;  //使用中のバレットのデータ
+
 
     private void Awake()
     {
@@ -51,6 +53,24 @@ public class GameData : MonoBehaviour
     public int GetDurability()
     {
         return durabilityBase;
+    }
+
+    /// <summary>
+    /// 使用するバレットのデータを設定
+    /// </summary>
+    /// <param name="bulletData"></param>
+    public void SetBulletData(BulletDataSO.BulletData bulletData)
+    {
+        currentBulletData = bulletData;
+    }
+
+    /// <summary>
+    /// 使用しているバレットのデータを取得
+    /// </summary>
+    /// <returns></returns>
+    public BulletDataSO.BulletData GetCurrentBulletData()
+    {
+        return currentBulletData;
     }
 
     /// <summary>

@@ -12,6 +12,8 @@ public class BulletSelectManager : MonoBehaviour
 
     public List<BulletSelectDetail> bulletSelectDetailList = new();
 
+    [SerializeField] private BulletDataSO bulletDataSO;
+
 
     void Start()
     {
@@ -35,5 +37,8 @@ public class BulletSelectManager : MonoBehaviour
             //0.25秒だけ処理を中断(順番にボタンが生成されるようにする演出)
             yield return new WaitForSeconds(0.25f);
         }
+
+        //TODO 使用するバレットの情報を初期設定。後で、引数を変更する
+        GameData.instance.SetBulletData(bulletDataSO.bulletDataList[0]);
     }
 }
