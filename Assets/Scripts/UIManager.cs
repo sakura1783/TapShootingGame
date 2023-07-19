@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Slider slider;
 
+    [SerializeField] private FloatingMessage floatingMessagePrefab;
+
 
     /// <summary>
     /// ゲームクリア表示を隠す
@@ -72,5 +74,17 @@ public class UIManager : MonoBehaviour
     public void UpdateDisplayTotalExp(int totalExp)
     {
         txtExp.text = totalExp.ToString();
+    }
+
+    /// <summary>
+    /// Exp用のフロート表示の生成
+    /// </summary>
+    /// <param name="exp"></param>
+    /// <param name="floatingMessageType"></param>
+    public void CreateFloatingMessageToExp(int exp, FloatingMessage.FloatingMessageType floatingMessageType)
+    {
+        FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, txtExp.transform, false);
+
+        floatingMessage.DisplayFloatingMessage(exp, floatingMessageType);
     }
 }

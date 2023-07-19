@@ -155,6 +155,8 @@ MonoBehaviour:
   slider: {fileID: 7707717561447196376}
   bulletEfectPrefab: {fileID: 7586388026564742961, guid: 74b4d4e2d3c744c9b8a3e86ae3eb8f7d, type: 3}
   enemyBulletPrefab: {fileID: 7066281129732370577, guid: 9860af28a9c354c5583a9ff609348a9f, type: 3}
+  floatingTran: {fileID: 204490957}
+  floatingMessagePrefab: {fileID: 5053769490105292378, guid: 53024170f1b8f41b09717d0b1b254a9e, type: 3}
 --- !u!1 &7707717560182887066
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,6 +20,10 @@ public class DefenceBase : MonoBehaviour
 
     [SerializeField] private GameObject enemyAttackEffectPrefab;
 
+    [SerializeField] private FloatingMessage floatingMessagePrefab;
+
+    [SerializeField] private Transform floatingTran;
+
 
     public void SetUpDefenceBase(GameManager gameManager)
     {
@@ -53,6 +57,8 @@ public class DefenceBase : MonoBehaviour
             }
 
             UpdateDurability(damage);
+
+            CreateFloatingMessageToDamage(damage);
 
             GenerateEnemyAttackEffect(col.gameObject.transform);
 
@@ -106,5 +112,16 @@ public class DefenceBase : MonoBehaviour
         particle.transform.SetParent(TransformHelper.TemporaryObjectContainerTran);
 
         Destroy(particle, 3);
+    }
+
+    /// <summary>
+    /// エネミーからのダメージ値用のフロート表示の生成
+    /// </summary>
+    /// <param name="damage"></param>
+    private void CreateFloatingMessageToDamage(int damage)
+    {
+        FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, floatingTran, false);
+
+        floatingMessage.DisplayFloatingMessage(damage, FloatingMessage.FloatingMessageType.PlayerDamage);
     }
 }

@@ -352,7 +352,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         gameManager.uiManager.UpdateDisplayTotalExp(GameData.instance.GetTotalExp());
 
-        //TODO 引数のexp変数は後々利用する
+        gameManager.uiManager.CreateFloatingMessageToExp(exp, FloatingMessage.FloatingMessageType.GetExp);
     }
 
     /// <summary>

@@ -29,6 +29,10 @@ public class EnemyController : MonoBehaviour
 
     private UnityAction<Transform, float> moveEvent;  //ここに敵の移動方法に応じた移動用のメソッドを登録する
 
+    [SerializeField] private Transform floatingTran;
+
+    [SerializeField] private FloatingMessage floatingMessagePrefab;
+
 
     void Start()
     {
@@ -133,6 +137,8 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     private void UpdateHp(Bullet bullet)
     {
+        CreateFloatingMessageToBulletPower(bullet.bulletPower);
+
         hp -= bullet.bulletPower;
 
         hp = Mathf.Clamp(hp, 0, maxHp);
@@ -196,6 +202,16 @@ public class EnemyController : MonoBehaviour
 
             yield return new WaitForSeconds(5);
         }
+    }
+
+    /// <summary>
+    /// 弾の攻撃力値分のフロート表示の生成
+    /// </summary>
+    private void CreateFloatingMessageToBulletPower(int bulletPower)
+    {
+        FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, floatingTran, false);
+
+        floatingMessage.DisplayFloatingMessage(bulletPower, FloatingMessage.FloatingMessageType.EnemyDamage);
     }
 
     /// <summary>
