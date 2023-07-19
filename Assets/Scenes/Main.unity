@@ -573,6 +573,7 @@ MonoBehaviour:
   prepareTime: 2
   isBossDestroyed: 0
   enemyDataSO: {fileID: 11400000, guid: 5aaf067ec50f240a99cc75eee67174bf, type: 2}
+  moveEventSO: {fileID: 11400000, guid: a8839b5125d1240e591b3dd7d813ce0a, type: 2}
   spawnDataList:
   - enemyNo: 0
     maxSpawnCount: 1

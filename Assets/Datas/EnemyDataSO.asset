@@ -27,7 +27,7 @@ MonoBehaviour:
     enemySprite: {fileID: 21300000, guid: 9010e12dd571745508ee60b070558620, type: 3}
     enemyType: 1
     exp: 15
-    moveDuration: 25
+    moveDuration: 30
     moveType: 1
   - enemyNo: 2
     hp: 100

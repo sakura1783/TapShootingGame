@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Events;  //UnityActionを使用する際には宣言が必要
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class EnemyController : MonoBehaviour
@@ -23,6 +24,8 @@ public class EnemyController : MonoBehaviour
     //private bool isBoss;
 
     private EnemyGenerator enemyGenerator;
+
+    private UnityAction<Transform, float> moveEvent;  //ここに敵の移動方法に応じた移動用のメソッドを登録する
 
 
     void Start()
@@ -76,7 +79,13 @@ public class EnemyController : MonoBehaviour
 
         DisplayHpGauge();
 
-        SetMoveByMoveType();
+        //SetMoveByMoveType();
+
+        //MoveEventSOスクリプタブル・オブジェクトのGetMoveEventメソッドを実行し、戻り値で移動用のメソッドを受け取る。ここで移動方法を決定
+        moveEvent = this.enemyGenerator.moveEventSO.GetMoveEvent(enemyData.moveType);
+
+        //Invokeメソッドを実行すると、moveEvent変数に登録されたメソッド(今回は移動用のメソッド)を実行する
+        moveEvent.Invoke(transform, enemyData.moveDuration);
     }
 
     /// <summary>
@@ -165,57 +174,57 @@ public class EnemyController : MonoBehaviour
     /// <summary>
     /// 移動タイプに応じた移動方法を選択して実行
     /// </summary>
-    private void SetMoveByMoveType()
-    {
-        switch (enemyData.moveType)
-        {
-            case MoveType.Straight:
-                MoveStraight();
-                break;
-            case MoveType.Meandering:
-                MoveMeandering();
-                break;
-            case MoveType.Boss_Horizontal:
-                MoveBossHorizontal();
-                break;
-        }
-    }
+    //private void SetMoveByMoveType()
+    //{
+    //    switch (enemyData.moveType)
+    //    {
+    //        case MoveType.Straight:
+    //            MoveStraight();
+    //            break;
+    //        case MoveType.Meandering:
+    //            MoveMeandering();
+    //            break;
+    //        case MoveType.Boss_Horizontal:
+    //            MoveBossHorizontal();
+    //            break;
+    //    }
+    //}
 
     /// <summary>
     /// 直進移動
     /// </summary>
-    private void MoveStraight()
-    {
-        Debug.Log("直進");
+    //private void MoveStraight()
+    //{
+    //    Debug.Log("直進");
 
-        transform.DOLocalMoveY(-3000, enemyData.moveDuration).SetLink(gameObject);
-    }
+    //    transform.DOLocalMoveY(-3000, enemyData.moveDuration).SetLink(gameObject);
+    //}
 
     /// <summary>
     /// 蛇行移動
     /// </summary>
-    private void MoveMeandering()
-    {
-        Debug.Log("蛇行");
+    //private void MoveMeandering()
+    //{
+    //    Debug.Log("蛇行");
 
-        transform.DOLocalMoveX(transform.position.x + Random.Range(150, 200), 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear).SetLink(gameObject);
-        transform.DOLocalMoveY(-3000, enemyData.moveDuration).SetLink(gameObject);
-    }
+    //    transform.DOLocalMoveX(transform.position.x + Random.Range(150, 200), 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear).SetLink(gameObject);
+    //    transform.DOLocalMoveY(-3000, enemyData.moveDuration).SetLink(gameObject);
+    //}
 
     /// <summary>
     /// ボス・水平移動
     /// </summary>
-    private void MoveBossHorizontal()
-    {
-        transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
+    //private void MoveBossHorizontal()
+    //{
+    //    transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
 
-        transform.DOLocalMoveY(-500, 3).OnComplete(() =>
-        {
-            Sequence sequence = DOTween.Sequence().SetLink(gameObject);
-            sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + 400, 2.5f).SetEase(Ease.Linear));
-            sequence.Append(transform.DOLocalMoveX(transform.localPosition.x - 400, 5f).SetEase(Ease.Linear));
-            sequence.Append(transform.DOLocalMoveX(transform.localPosition.x, 2.5f).SetEase(Ease.Linear));
-            sequence.AppendInterval(1).SetLoops(-1, LoopType.Restart);  //LoopType.Restartは最初からやり直す
-        });
-    }
+    //    transform.DOLocalMoveY(-500, 3).OnComplete(() =>
+    //    {
+    //        Sequence sequence = DOTween.Sequence().SetLink(gameObject);
+    //        sequence.Append(transform.DOLocalMoveX(transform.localPosition.x + 400, 2.5f).SetEase(Ease.Linear));
+    //        sequence.Append(transform.DOLocalMoveX(transform.localPosition.x - 400, 5f).SetEase(Ease.Linear));
+    //        sequence.Append(transform.DOLocalMoveX(transform.localPosition.x, 2.5f).SetEase(Ease.Linear));
+    //        sequence.AppendInterval(1).SetLoops(-1, LoopType.Restart);  //LoopType.Restartは最初からやり直す
+    //    });
+    //}
 }

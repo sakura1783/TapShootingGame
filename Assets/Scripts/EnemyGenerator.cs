@@ -28,6 +28,8 @@ public class EnemyGenerator : MonoBehaviour
     //public List<EnemyDataSO.EnemyData> eliteEnemyDatas = new List<EnemyDataSO.EnemyData>();
     //public List<EnemyDataSO.EnemyData> bossEnemyDatas = new List<EnemyDataSO.EnemyData>();
 
+    public MoveEventSO moveEventSO;
+
 
     //void Update()
     //{
