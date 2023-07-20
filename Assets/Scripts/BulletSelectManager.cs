@@ -30,7 +30,8 @@ public class BulletSelectManager : MonoBehaviour
         {
             BulletSelectDetail bulletSelectDetail = Instantiate(bulletSelectDetailPrefab, bulletButtonTran, false);
 
-            bulletSelectDetail.SetUpBulletSelectDetail(this);
+            //TODO あとで引数を変更
+            bulletSelectDetail.SetUpBulletSelectDetail(this, bulletDataSO.bulletDataList[i]);
 
             bulletSelectDetailList.Add(bulletSelectDetail);
 

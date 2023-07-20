@@ -30,7 +30,6 @@ public class Bullet : MonoBehaviour
         imgBullet.sprite = this.bulletData.bulletSprite;
 
         GetComponent<Rigidbody2D>().AddForce(direction * this.bulletData.bulletSpeed);
-        Debug.Log($"弾のスピード：{this.bulletData.bulletSpeed}");
 
         Destroy(gameObject, 5);
     }

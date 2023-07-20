@@ -10,10 +10,17 @@ public class BulletSelectDetail : MonoBehaviour
 
     private BulletSelectManager bulletSelectManager;
 
+    [SerializeField] private Image imgBulletButton;
 
-    public void SetUpBulletSelectDetail(BulletSelectManager bulletSelectManager)
+    public BulletDataSO.BulletData bulletData;
+
+
+    public void SetUpBulletSelectDetail(BulletSelectManager bulletSelectManager, BulletDataSO.BulletData bulletData)
     {
         this.bulletSelectManager = bulletSelectManager;
+        this.bulletData = bulletData;
+
+        imgBulletButton.sprite = this.bulletData.btnSprite;
 
         btnBulletSelect.onClick.AddListener(OnClickButtonBulletSelect);
     }
@@ -24,5 +31,8 @@ public class BulletSelectDetail : MonoBehaviour
     public void OnClickButtonBulletSelect()
     {
         Debug.Log("弾選択");
+
+        //このバレット選択ボタンに設定されているBulletDataをGameDataのcurrentBulletData変数に登録し、現在使用中のバレットとする
+        GameData.instance.SetBulletData(bulletData);
     }
 }
