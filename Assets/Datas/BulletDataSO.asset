@@ -21,7 +21,7 @@ MonoBehaviour:
     btnSprite: {fileID: -2099913850, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
     needExp: 0
-    duration: 7
+    duration: 6
     bulletSprite: {fileID: 182182450, guid: 8342b9534b53a4e6687f9bb3e8b95c04, type: 3}
     description: "\u8449"
   - bulletNo: 1
@@ -31,7 +31,7 @@ MonoBehaviour:
     bulletType: 1
     btnSprite: {fileID: 350365590, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
-    needExp: 0
+    needExp: 5
     duration: 6
     bulletSprite: {fileID: 2043063868, guid: 7e8d2882cc69542c281cffb08b3aa6c7, type: 3}
     description: "\u706B"
@@ -42,8 +42,8 @@ MonoBehaviour:
     bulletType: 2
     btnSprite: {fileID: -161640022, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
-    needExp: 0
-    duration: 8
+    needExp: 5
+    duration: 7
     bulletSprite: {fileID: 21300000, guid: 473ddea0c45db402386b8aa34a354d2d, type: 3}
     description: "\u6C37"
   - bulletNo: 3
@@ -53,9 +53,9 @@ MonoBehaviour:
     bulletType: 3
     btnSprite: {fileID: -344933440, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
-    needExp: 0
-    duration: 10
-    bulletSprite: {fileID: 21300000, guid: 03d70d2dc924a4cd3a5e4f13dd5f74ca, type: 3}
+    needExp: 5
+    duration: 8
+    bulletSprite: {fileID: 21300000, guid: b428e3b7ead754d3cbb3c3dd69ae6b9a, type: 3}
     description: "\u96F7"
   - bulletNo: 4
     bulletSpeed: 60

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d3c03a5064e914b968a22bdc5468a1b3
+guid: b428e3b7ead754d3cbb3c3dd69ae6b9a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -127,133 +127,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: BulletSelectButton_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 116.666664
-        height: 136
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0e372755a69c944a695ffa26c2307ef4
-      internalID: 950246696
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BulletSelectButton_1
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 0
-        width: 116.666664
-        height: 136
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf7c66e30e1234531b76a0b6c34ab936
-      internalID: -137887546
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BulletSelectButton_2
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 0
-        width: 116.666664
-        height: 136
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab9bd10b143bd443b8ce559ec25e6d60
-      internalID: -344933440
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BulletSelectButton_3
-      rect:
-        serializedVersion: 2
-        x: 348
-        y: 0
-        width: 116.666664
-        height: 136
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd27c48be1366494aad67c2db1aed6ce
-      internalID: -2099913850
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BulletSelectButton_4
-      rect:
-        serializedVersion: 2
-        x: 464
-        y: 0
-        width: 116.666664
-        height: 136
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8a31f2036d9bf48b68d32e95ae05f870
-      internalID: -161640022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BulletSelectButton_5
-      rect:
-        serializedVersion: 2
-        x: 580
-        y: 0
-        width: 116.666664
-        height: 136
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f8107145fd5d64fd4a281542eb546853
-      internalID: 350365590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -264,13 +138,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      BulletSelectButton_0: 950246696
-      BulletSelectButton_1: -137887546
-      BulletSelectButton_2: -344933440
-      BulletSelectButton_3: -2099913850
-      BulletSelectButton_4: -161640022
-      BulletSelectButton_5: 350365590
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

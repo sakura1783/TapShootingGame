@@ -76,8 +76,6 @@ public class DefenceBase : MonoBehaviour
 
         durability = Mathf.Clamp(durability, 0, maxDurability);
 
-        Debug.Log($"残りの耐久力：{durability}");
-
         gameManager.uiManager.DisplayDurability(durability, maxDurability);
 
         if (durability <= 0 && gameManager.isGameUp == false)
