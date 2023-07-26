@@ -14,18 +14,22 @@ public class BulletSelectManager : MonoBehaviour
 
     [SerializeField] private BulletDataSO bulletDataSO;
 
+    private GameManager gameManager;
 
-    void Start()
-    {
-        StartCoroutine(GenerateBulletSelectDetail());
-    }
+    
+    //void Start()
+    //{
+    //    StartCoroutine(GenerateBulletSelectDetail());
+    //}
 
     /// <summary>
-    /// 弾選択用ボタンの生成
+    /// バレット選択用ボタンの生成
     /// </summary>
     /// <returns></returns>
-    public IEnumerator GenerateBulletSelectDetail()
+    public IEnumerator GenerateBulletSelectDetail(GameManager gameManager)
     {
+        this.gameManager = gameManager;
+
         for (int i = 0; i < maxBulletButtonCount; i++)
         {
             BulletSelectDetail bulletSelectDetail = Instantiate(bulletSelectDetailPrefab, bulletButtonTran, false);
@@ -81,6 +85,36 @@ public class BulletSelectManager : MonoBehaviour
                 Debug.Log("初期バレットを装填中のバレットとして設定");
 
                 return;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 使用可能バレット選択ボタンの確認と更新
+    /// </summary>
+    public void JudgeOpenBullets()
+    {
+        int totalExp = GameData.instance.GetTotalExp();
+
+        //バレットごとに必要なExpを超えているか確認
+        foreach (BulletSelectDetail bulletSelectDetail in bulletSelectDetailList)
+        {
+            if (gameManager.isGameUp)
+            {
+                bulletSelectDetail.SwitchActivateBulletButton(false, 0.5f);
+
+                continue;  //if(gameManager.isGameUp)がtrueの場合、以下の処理がスキップされる。    
+            }
+
+            //持っているExpの値がバレットに設定されているコストの値以上であれば、そのバレット選択ボタンをアクティブにしてタップできるようにする
+            if (bulletSelectDetail.bulletData.needExp <= totalExp)
+            {
+                bulletSelectDetail.SwitchActivateBulletButton(true, 1f);
+            }
+            //持っているExpの値がバレットに設定されているコストの値以下であれば、そのバレット選択ボタンを非アクティブにしてタップできなくする
+            else
+            {
+                bulletSelectDetail.SwitchActivateBulletButton(false, 0.5f);
             }
         }
     }

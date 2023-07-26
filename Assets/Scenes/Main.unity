@@ -2508,6 +2508,7 @@ MonoBehaviour:
   enemyGenerator: {fileID: 252322660}
   temporaryObjectContainerTran: {fileID: 532936956}
   uiManager: {fileID: 1703213733}
+  bulletSelectManager: {fileID: 685350446}
 --- !u!1 &1599667381
 GameObject:
   m_ObjectHideFlags: 0

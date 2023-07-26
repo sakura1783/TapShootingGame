@@ -16,8 +16,10 @@ public class GameManager : MonoBehaviour
 
     public UIManager uiManager;
 
+    public BulletSelectManager bulletSelectManager;
 
-    void Start()
+
+    IEnumerator Start()
     {
         SwitchGameUp(false);
 
@@ -32,6 +34,11 @@ public class GameManager : MonoBehaviour
 
         uiManager.HideGameClearSet();
         uiManager.HideGameOverSet();
+
+        //バレット選択ボタンの生成。この処理が終了するまで、次の処理は動かない
+        yield return StartCoroutine(bulletSelectManager.GenerateBulletSelectDetail(this));
+
+        bulletSelectManager.JudgeOpenBullets();
     }
 
     /// <summary>
