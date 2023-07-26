@@ -37,7 +37,7 @@ public class DefenceBase : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Enemy"))
+        if (col.CompareTag("Enemy") || col.CompareTag("EnemyBullet"))
         {
             int damage = 0;
 

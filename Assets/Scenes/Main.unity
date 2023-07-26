@@ -774,7 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 149d70d0baaf04c078268057bf026dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5271295984595667058, guid: 68f3cbb27fb704853801658abe99d594, type: 3}
+  bulletPrefab: {fileID: 5271295984595667061, guid: 68f3cbb27fb704853801658abe99d594, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2444,7 +2444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0f2cd53cc97470cb10b67046d15cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalExp: 0
+  totalExp: 300
   durabilityBase: 200
   currentBulletData:
     bulletNo: 0

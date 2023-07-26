@@ -112,7 +112,7 @@ public class EnemyController : MonoBehaviour
     {
         if (col.CompareTag("Bullet"))
         {
-            DestroyBullet(col);
+            //DestroyBullet(col);
 
             if (col.TryGetComponent(out Bullet bullet))
             {
@@ -137,9 +137,9 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     private void UpdateHp(Bullet bullet)
     {
-        CreateFloatingMessageToBulletPower(bullet.bulletPower);
+        CreateFloatingMessageToBulletPower(bullet.bulletData.bulletPower);
 
-        hp -= bullet.bulletPower;
+        hp -= bullet.bulletData.bulletPower;
 
         hp = Mathf.Clamp(hp, 0, maxHp);
 
@@ -161,6 +161,12 @@ public class EnemyController : MonoBehaviour
         //{
         //    Debug.Log($"残りHP : {hp}");
         //}
+
+        //氷のバレット以外の場合、そのバレットを破壊(氷のバレットは貫通する)
+        if (bullet.bulletData.bulletType != BulletDataSO.BulletType.Player_Ice)
+        {
+            Destroy(bullet.gameObject);
+        }
     }
 
     /// <summary>
