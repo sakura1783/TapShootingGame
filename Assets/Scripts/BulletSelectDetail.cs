@@ -25,6 +25,9 @@ public class BulletSelectDetail : MonoBehaviour
 
     [SerializeField] private Text txtExpValue;
 
+    private bool isCostPaid;  //コスト支払い済みかどうか
+    public bool IsCostPaid { get; set; }
+
 
     void Update()
     {
@@ -109,7 +112,12 @@ public class BulletSelectDetail : MonoBehaviour
             //装填中のバレット選択ボタンのExp表示を非表示にする
             SwitchActivateDisplayBulletExp(false);
 
-            //TODO そのほかに設定する処理を追加
+            //コスト支払いと使用可能バレット選択ボタンの確認と更新
+            bulletSelectManager.SelectedBulletCostPayment(bulletData.needExp);
+
+            //コスト支払い状態にする = durationが0になっていなければ、Expが足りなくても選択できるようにする
+            //SetStateBulletCostPayment(true);
+            isCostPaid = true;
         }
     }
 
@@ -135,6 +143,11 @@ public class BulletSelectDetail : MonoBehaviour
         duration = initialDuration;
 
         SwitchActivateDisplayBulletExp(true);
+
+        //SetStateBulletCostPayment(false);
+        isCostPaid = false;
+
+        bulletSelectManager.JudgeOpenBullets();
     }
 
     /// <summary>
@@ -167,4 +180,22 @@ public class BulletSelectDetail : MonoBehaviour
         color.a = alphaValue;
         imgBulletButton.color = color;
     }
+
+    /// <summary>
+    /// コスト支払い状態の確認
+    /// </summary>
+    /// <returns></returns>
+    //public bool GetStateBulletCostPayment()
+    //{
+    //    return isCostPaid;
+    //}
+
+    /// <summary>
+    /// コスト支払い状態の更新
+    /// </summary>
+    /// <param name="isSet"></param>
+    //public void SetStateBulletCostPayment(bool isSet)
+    //{
+    //    isCostPaid = isSet;
+    //}
 }

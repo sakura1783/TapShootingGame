@@ -103,7 +103,16 @@ public class BulletSelectManager : MonoBehaviour
             {
                 bulletSelectDetail.SwitchActivateBulletButton(false, 0.5f);
 
-                continue;  //if(gameManager.isGameUp)がtrueの場合、以下の処理がスキップされる。    
+                continue;  //if(gameManager.isGameUp)がtrueの場合、以下の処理がスキップされて、次の要素のforeachの処理に入る
+            }
+
+            //コストを支払っているかどうか、戻り値を持つメソッドを利用して確認する
+            //if (bulletSelectDetail.GetStateBulletCostPayment())
+            if (bulletSelectDetail.IsCostPaid)
+            {
+                bulletSelectDetail.SwitchActivateBulletButton(true, 1f);
+
+                continue;
             }
 
             //持っているExpの値がバレットに設定されているコストの値以上であれば、そのバレット選択ボタンをアクティブにしてタップできるようにする
@@ -117,5 +126,24 @@ public class BulletSelectManager : MonoBehaviour
                 bulletSelectDetail.SwitchActivateBulletButton(false, 0.5f);
             }
         }
+    }
+
+    /// <summary>
+    /// 選択したバレットのコスト支払いとそれに関連する処理
+    /// </summary>
+    /// <param name="costExp"></param>
+    public void SelectedBulletCostPayment(int costExp)
+    {
+        //コストの支払い
+        GameData.instance.UpdateTotalExp(-costExp);
+
+        //画面のExp表示の更新
+        gameManager.uiManager.UpdateDisplayTotalExp(GameData.instance.GetTotalExp());
+
+        //フロート表示
+        gameManager.uiManager.CreateFloatingMessageToExp(-costExp, FloatingMessage.FloatingMessageType.BulletCost);
+
+        //使用可能バレットの確認と更新
+        JudgeOpenBullets();
     }
 }
