@@ -18,7 +18,7 @@ MonoBehaviour:
     bulletPower: 5
     Interval: 0.1
     bulletType: 0
-    btnSprite: {fileID: -2099913850, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
+    btnSprite: {fileID: 350365590, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
     needExp: 0
     duration: 6
@@ -29,7 +29,7 @@ MonoBehaviour:
     bulletPower: 10
     Interval: 0.1
     bulletType: 1
-    btnSprite: {fileID: 350365590, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
+    btnSprite: {fileID: 1510159107, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
     needExp: 5
     duration: 6
@@ -40,7 +40,7 @@ MonoBehaviour:
     bulletPower: 20
     Interval: 0.1
     bulletType: 2
-    btnSprite: {fileID: -161640022, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
+    btnSprite: {fileID: -284345961, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
     needExp: 5
     duration: 7
@@ -51,7 +51,7 @@ MonoBehaviour:
     bulletPower: 30
     Interval: 0.1
     bulletType: 3
-    btnSprite: {fileID: -344933440, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
+    btnSprite: {fileID: -2099913850, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
     needExp: 5
     duration: 8

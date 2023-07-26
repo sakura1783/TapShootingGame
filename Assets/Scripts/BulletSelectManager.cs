@@ -42,4 +42,46 @@ public class BulletSelectManager : MonoBehaviour
         //TODO 使用するバレットの情報を初期設定。後で、引数を変更する
         GameData.instance.SetBulletData(bulletDataSO.bulletDataList[0]);
     }
+
+    /// <summary>
+    /// 全てのバレット選択ボタンに対してNoで照合を行い、装填中と未装填の状態を変更
+    /// </summary>
+    /// <param name="bulletNo"></param>
+    public void ChangeLoadingBulletSettings(int bulletNo)
+    {
+        for (int i = 0; i < bulletSelectDetailList.Count; i++)
+        {
+            //この要素のバレットのNoが選択したバレット(bulletNo)と同じであるなら
+            if (bulletSelectDetailList[i].bulletData.bulletNo == bulletNo)
+            {
+                //装填中にする
+                bulletSelectDetailList[i].ChangeLoadingBullet(true);
+
+                Debug.Log($"装填中のバレットのNo : {bulletNo}");
+            }
+            else
+            {
+                //未装填中にする
+                bulletSelectDetailList[i].ChangeLoadingBullet(false);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 初期バレットを装填中のバレットとして設定
+    /// </summary>
+    public void ActivateDefaultBullet()
+    {
+        foreach (BulletSelectDetail bulletSelectDetail in bulletSelectDetailList)
+        {
+            if (bulletSelectDetail.isDefaultBullet)
+            {
+                bulletSelectDetail.OnClickButtonBulletSelect();
+
+                Debug.Log("初期バレットを装填中のバレットとして設定");
+
+                return;
+            }
+        }
+    }
 }

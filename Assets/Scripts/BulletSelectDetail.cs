@@ -46,7 +46,8 @@ public class BulletSelectDetail : MonoBehaviour
         {
             duration = 0;
 
-            //TODO 初期バレット以外のバレットを初期状態に戻す
+            //初期バレット以外のバレットを初期状態に戻す
+            InitializeBulletState();
         }
     }
 
@@ -88,10 +89,10 @@ public class BulletSelectDetail : MonoBehaviour
         //このバレット選択ボタンに設定されているBulletDataをGameDataのcurrentBulletData変数に登録し、現在使用中のバレットとする
         GameData.instance.SetBulletData(bulletData);
 
-        //TODO 装填中の弾を切り替え。あとで処理を変更
-        ChangeLoadingBullet(true);
+        //このバレット選択ボタンを装填中に切り替えて、それ以外のバレット選択ボタンを未装填に変更
+        bulletSelectManager.ChangeLoadingBulletSettings(bulletData.bulletNo);
 
-        //初期バレットではなくて、かつ、まだ選択していない場合(重複タップ防止)
+        //初期バレットではなく、まだ選択していない場合(重複タップ防止)
         if (!isDefaultBullet && imgTimeGauge.fillAmount == 0)
         {
             imgTimeGauge.fillAmount = 1;
@@ -107,5 +108,18 @@ public class BulletSelectDetail : MonoBehaviour
     public void ChangeLoadingBullet(bool isSwitch)
     {
         isLoading = isSwitch;
+    }
+
+    /// <summary>
+    /// 初期バレット以外のバレットを初期状態に戻す
+    /// </summary>
+    private void InitializeBulletState()
+    {
+        isLoading = false;
+
+        //初期バレットを装填中のバレットとして設定
+        bulletSelectManager.ActivateDefaultBullet();
+
+        duration = initialDuration;
     }
 }
