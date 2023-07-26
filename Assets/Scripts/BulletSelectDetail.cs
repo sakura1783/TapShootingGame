@@ -23,6 +23,8 @@ public class BulletSelectDetail : MonoBehaviour
 
     public bool isDefaultBullet;
 
+    [SerializeField] private Text txtExpValue;
+
 
     void Update()
     {
@@ -60,7 +62,8 @@ public class BulletSelectDetail : MonoBehaviour
 
         btnBulletSelect.onClick.AddListener(OnClickButtonBulletSelect);
 
-        //TODO 弾を選択できない(ボタンを押せない)状態に切り替える
+        //弾を選択できない(ボタンを押せない)状態に切り替える
+        SwitchActivateBulletButton(false, 0.5f);
 
         initialDuration = this.bulletData.duration;
         duration = initialDuration;
@@ -68,12 +71,18 @@ public class BulletSelectDetail : MonoBehaviour
         //弾を発射できる残り時間のゲージ表示を0にして見えなくする
         imgTimeGauge.fillAmount = 0;
 
+        txtExpValue.text = this.bulletData.needExp.ToString();
+
         //初期バレット確認
         if (this.bulletData.needExp == 0)
         {
             isDefaultBullet = true;
 
             ChangeLoadingBullet(true);
+
+            SwitchActivateDisplayBulletExp(false);
+
+            SwitchActivateBulletButton(true, 1f);
 
             //TODO そのほかに設定する処理を追加
         }
@@ -96,6 +105,9 @@ public class BulletSelectDetail : MonoBehaviour
         if (!isDefaultBullet && imgTimeGauge.fillAmount == 0)
         {
             imgTimeGauge.fillAmount = 1;
+
+            //装填中のバレット選択ボタンのExp表示を非表示にする
+            SwitchActivateDisplayBulletExp(false);
 
             //TODO そのほかに設定する処理を追加
         }
@@ -121,5 +133,38 @@ public class BulletSelectDetail : MonoBehaviour
         bulletSelectManager.ActivateDefaultBullet();
 
         duration = initialDuration;
+
+        SwitchActivateDisplayBulletExp(true);
+    }
+
+    /// <summary>
+    /// バレット解放に必要なExp表示の表示切り替え
+    /// </summary>
+    private void SwitchActivateDisplayBulletExp(bool isSwitch)
+    {
+        txtExpValue.gameObject.SetActive(isSwitch);
+    }
+
+    /// <summary>
+    /// バレット選択ボタンのアクティブ状態の切り替え
+    /// </summary>
+    /// <param name="isSwitch"></param>
+    public void SwitchActivateBulletButton(bool isSwitch, float alphaValue)
+    {
+        btnBulletSelect.interactable = isSwitch;
+
+        //ボタンの画像のAlpha値を変更
+        SetAlpha(alphaValue);
+    }
+
+    /// <summary>
+    /// ボタンの画像のAlpha値を変更
+    /// </summary>
+    /// <param name="alphaValue"></param>
+    private void SetAlpha(float alphaValue)
+    {
+        Color color = imgBulletButton.color;
+        color.a = alphaValue;
+        imgBulletButton.color = color;
     }
 }

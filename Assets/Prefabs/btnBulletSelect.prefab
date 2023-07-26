@@ -229,6 +229,7 @@ MonoBehaviour:
     bulletSprite: {fileID: 0}
     description: 
   isDefaultBullet: 0
+  txtExpValue: {fileID: 4826127146117760255}
 --- !u!1 &4826127146117760253
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4826127146117760254
 RectTransform:
   m_ObjectHideFlags: 0
@@ -289,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.7169812, g: 0.07102172, b: 0.4269412, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
