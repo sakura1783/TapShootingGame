@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
 
     public BulletSelectManager bulletSelectManager;
 
+    [SerializeField] private GameObject fireworkPrefab;
+
+    [SerializeField] private Transform canvasTran;
+
 
     IEnumerator Start()
     {
@@ -64,6 +68,8 @@ public class GameManager : MonoBehaviour
     public void PrepareGameClear()
     {
         uiManager.DisplayGameClearSet();
+
+        StartCoroutine(GenerateFireworks());
     }
 
     /// <summary>
@@ -82,5 +88,51 @@ public class GameManager : MonoBehaviour
     public Vector3 GetPlayerDirection(Vector3 enemyPos)
     {
         return (playerController.transform.position - enemyPos).normalized;
+    }
+
+    /// <summary>
+    /// 花火の生成
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator GenerateFireworks()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        for (int i = 0; i < Random.Range(5, 8); i++)
+        {
+            GameObject firework = Instantiate(fireworkPrefab, canvasTran, false);
+
+            //花火の色を変更するために、花火のゲームオブジェクトにアタッチされているパーティクルシステムのメインの情報(DurationやStartColorの情報がある部分)を取得
+            ParticleSystem.MainModule main = firework.GetComponent<ParticleSystem>().main;
+
+            //パーティクルの色をランダムな2色に変更
+            main.startColor = GetNewTwoRandomColors();
+
+            firework.transform.localPosition = new Vector3(firework.transform.position.x + Random.Range(-400, 400), firework.transform.position.y + Random.Range(500, 800));
+
+            Destroy(firework, 3f);
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    /// <summary>
+    /// パーティクルの色をランダムで設定
+    /// </summary>
+    /// <returns></returns>
+    private ParticleSystem.MinMaxGradient GetNewTwoRandomColors()
+    {
+        //パーティクルシステム用の色の設定を行うためのインスタンスを作成して、コンストラクタを利用して色を2色設定して初期化(パーティクルシステムのStartColorを変更する場合、ParticleSystem.MinMaxGradientの構造体のインスタンスを作成し、それを利用することで色を変更できるようになっている)
+        return new ParticleSystem.MinMaxGradient(GetRandomColor(), GetRandomColor());
+    }
+
+    /// <summary>
+    /// ランダムな色を取得
+    /// </summary>
+    /// <returns></returns>
+    private Color GetRandomColor()
+    {
+        //Color32はbyte型(0~255)で色の指定が可能なので、色の各成分用の値をRandom.Rangeメソッドを利用してint型で取得し、byte型にキャストして指定
+        return new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
     }
 }

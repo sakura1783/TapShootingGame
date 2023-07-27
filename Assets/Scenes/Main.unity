@@ -2509,6 +2509,8 @@ MonoBehaviour:
   temporaryObjectContainerTran: {fileID: 532936956}
   uiManager: {fileID: 1703213733}
   bulletSelectManager: {fileID: 685350446}
+  fireworkPrefab: {fileID: 6291158025303584562, guid: 44a9688dae52141808d85408333774a3, type: 3}
+  canvasTran: {fileID: 1087220083}
 --- !u!1 &1599667381
 GameObject:
   m_ObjectHideFlags: 0
