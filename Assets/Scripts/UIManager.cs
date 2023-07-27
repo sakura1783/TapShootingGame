@@ -8,10 +8,13 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private CanvasGroup gameClearSetCanvasGroup;
     [SerializeField] private CanvasGroup gameOverSetCanvasGroup;
+    [SerializeField] private CanvasGroup imgRestartCanvasGroup;
 
     [SerializeField] private Text txtGameOver;
     [SerializeField] private Text txtDurability;
     [SerializeField] private Text txtExp;
+
+    [SerializeField] private Image imgGameClear;
 
     [SerializeField] private Slider slider;
 
@@ -31,7 +34,21 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void DisplayGameClearSet()
     {
-        gameClearSetCanvasGroup.DOFade(1, 0.25f);
+        imgGameClear.rectTransform.localScale = new Vector3(2, 2, 2);
+
+        gameClearSetCanvasGroup.DOFade(1, 0.25f)
+            .OnComplete(() =>
+            {
+                imgGameClear.transform.DOScale(new Vector3(1, 1, 1), 1f).SetEase(Ease.InQuad)
+                    .OnComplete(() =>
+                    {
+                        //画面タップを許可
+                        gameClearSetCanvasGroup.blocksRaycasts = true;
+
+                        //Restartの点滅表示
+                        imgRestartCanvasGroup.DOFade(0, 1.5f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+                    });
+            });
     }
 
     /// <summary>
