@@ -21,6 +21,8 @@ MonoBehaviour:
     exp: 10
     moveDuration: 20
     moveType: 0
+    elementType: 4
+    bulletType: 4
   - enemyNo: 1
     hp: 70
     attackPoint: 15
@@ -29,6 +31,8 @@ MonoBehaviour:
     exp: 15
     moveDuration: 30
     moveType: 1
+    elementType: 0
+    bulletType: 0
   - enemyNo: 2
     hp: 100
     attackPoint: 20
@@ -37,6 +41,8 @@ MonoBehaviour:
     exp: 25
     moveDuration: 15
     moveType: 0
+    elementType: 1
+    bulletType: 5
   - enemyNo: 3
     hp: 200
     attackPoint: 40
@@ -45,3 +51,5 @@ MonoBehaviour:
     exp: 50
     moveDuration: 0
     moveType: 2
+    elementType: 5
+    bulletType: 6

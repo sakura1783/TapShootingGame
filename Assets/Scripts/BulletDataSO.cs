@@ -52,5 +52,6 @@ public class BulletDataSO : ScriptableObject
         public float duration;  //使用できる時間
         public Sprite bulletSprite;
         public string description;  //説明
+        public ElementType elementType;
     }
 }

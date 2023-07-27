@@ -35,5 +35,7 @@ public class EnemyDataSO : ScriptableObject
         public int exp;
         public float moveDuration;  //拠点までの移動時間
         public MoveType moveType;
+        public ElementType elementType;
+        public BulletDataSO.BulletType bulletType;
     }
 }
