@@ -282,6 +282,9 @@ public class EnemyGenerator : MonoBehaviour
 
             Debug.Log("全ての敵を生成しました");
 
+            //ボスの警告表示
+            yield return StartCoroutine(gameManager.uiManager.PlayBossAlert());
+
             StartCoroutine(GenerateBoss());
         }
     }

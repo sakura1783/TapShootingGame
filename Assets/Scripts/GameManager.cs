@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
 
         uiManager.HideGameClearSet();
         uiManager.HideGameOverSet();
+        uiManager.HideBossAlertSet();
 
         //バレット選択ボタンの生成。この処理が終了するまで、次の処理は動かない
         yield return StartCoroutine(bulletSelectManager.GenerateBulletSelectDetail(this));

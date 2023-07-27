@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        if (gameManager.uiManager.isAlerting)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 tapPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

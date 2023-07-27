@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private CanvasGroup imgRestartCanvasGroup;
     [SerializeField] private CanvasGroup openingFilterCanvasGroup;
     [SerializeField] private CanvasGroup imgGameStartCanvasGroup;
+    [SerializeField] private CanvasGroup imgAlertCanvasGroup;
 
     [SerializeField] private Text txtGameOver;
     [SerializeField] private Text txtDurability;
@@ -22,6 +23,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider slider;
 
     [SerializeField] private FloatingMessage floatingMessagePrefab;
+
+    public bool isAlerting = false;  //ボスの警告中かどうか。trueの間は、バレット生成できなくする
 
 
     /// <summary>
@@ -128,5 +131,36 @@ public class UIManager : MonoBehaviour
             });
 
         yield return new WaitForSeconds(3f);
+    }
+
+    /// <summary>
+    /// ボス警告用の表示を隠す
+    /// </summary>
+    public void HideBossAlertSet()
+    {
+        imgAlertCanvasGroup.transform.parent.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// ボスの警告演出
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator PlayBossAlert()
+    {
+        isAlerting = true;
+
+        imgAlertCanvasGroup.transform.parent.gameObject.SetActive(true);
+
+        imgAlertCanvasGroup.DOFade(1, 0.5f).SetLoops(6, LoopType.Yoyo);
+
+        yield return new WaitForSeconds(3f);
+
+        imgAlertCanvasGroup.DOFade(0, 0.25f);
+
+        yield return new WaitForSeconds(0.25f);
+
+        imgAlertCanvasGroup.transform.parent.gameObject.SetActive(false);
+
+        isAlerting = false;
     }
 }
