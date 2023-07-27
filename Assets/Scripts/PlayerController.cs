@@ -11,6 +11,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!gameManager.isSetUpEnd)
+        {
+            return;
+        }
+
         if (gameManager.isGameUp)
         {
             return;

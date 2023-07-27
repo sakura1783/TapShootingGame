@@ -22,9 +22,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Transform canvasTran;
 
+    public bool isSetUpEnd;
+
 
     IEnumerator Start()
     {
+        isSetUpEnd = false;
+
         SwitchGameUp(false);
 
         defenceBase.SetUpDefenceBase(this);
@@ -42,7 +46,11 @@ public class GameManager : MonoBehaviour
         //バレット選択ボタンの生成。この処理が終了するまで、次の処理は動かない
         yield return StartCoroutine(bulletSelectManager.GenerateBulletSelectDetail(this));
 
+        yield return StartCoroutine(uiManager.PlayOpening());
+
         bulletSelectManager.JudgeOpenBullets();
+
+        isSetUpEnd = true;
     }
 
     /// <summary>

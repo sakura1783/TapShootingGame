@@ -265,13 +265,19 @@ public class EnemyGenerator : MonoBehaviour
 
             while (MaxSpawnEnemyCount > spawnCount)
             {
-                yield return new WaitForSeconds(prepareTime);
+                if (gameManager.isSetUpEnd)
+                {
+                    yield return new WaitForSeconds(prepareTime);
 
-                SpawnEnemy();
+                    SpawnEnemy();
 
-                spawnCount = spawnCountByEnemyType.Values.Sum();
+                    spawnCount = spawnCountByEnemyType.Values.Sum();
 
-                Debug.Log($"現在の総生成数：{spawnCount}");
+                    Debug.Log($"現在の総生成数：{spawnCount}");
+                }
+
+                //if(gameManager.isSetUpEnd)を追加したので追加(これを書かないと無限ループになり、Unityが動かなくなる)
+                yield return null;
             }
 
             Debug.Log("全ての敵を生成しました");

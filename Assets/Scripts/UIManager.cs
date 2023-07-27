@@ -9,12 +9,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private CanvasGroup gameClearSetCanvasGroup;
     [SerializeField] private CanvasGroup gameOverSetCanvasGroup;
     [SerializeField] private CanvasGroup imgRestartCanvasGroup;
+    [SerializeField] private CanvasGroup openingFilterCanvasGroup;
+    [SerializeField] private CanvasGroup imgGameStartCanvasGroup;
 
     [SerializeField] private Text txtGameOver;
     [SerializeField] private Text txtDurability;
     [SerializeField] private Text txtExp;
 
     [SerializeField] private Image imgGameClear;
+    [SerializeField] private Image imgGameStart;
 
     [SerializeField] private Slider slider;
 
@@ -103,5 +106,27 @@ public class UIManager : MonoBehaviour
         FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, txtExp.transform, false);
 
         floatingMessage.DisplayFloatingMessage(exp, floatingMessageType);
+    }
+
+    /// <summary>
+    /// オープニング演出
+    /// </summary>
+    public IEnumerator PlayOpening()
+    {
+        openingFilterCanvasGroup.DOFade(0, 1f)
+            .OnComplete(() =>
+            {
+                imgGameStartCanvasGroup.DOFade(1, 1f).SetEase(Ease.InQuad);
+
+                imgGameStart.transform.DORotate(new Vector3(0, 0, -720), 1.5f, RotateMode.FastBeyond360);
+
+                imgGameStart.transform.DOScale(new Vector3(1, 1, 1), 1.5f).SetEase(Ease.InQuad)
+                    .OnComplete(() =>
+                    {
+                        imgGameStartCanvasGroup.DOFade(0, 0.5f);
+                    });
+            });
+
+        yield return new WaitForSeconds(3f);
     }
 }
