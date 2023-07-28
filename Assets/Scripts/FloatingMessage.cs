@@ -25,13 +25,18 @@ public class FloatingMessage : MonoBehaviour
     /// </summary>
     /// <param name="floatingValue"></param>
     /// <param name="floatingMessageType"></param>
-    public void DisplayFloatingMessage(int floatingValue, FloatingMessageType floatingMessageType)
+    public void DisplayFloatingMessage(int floatingValue, FloatingMessageType floatingMessageType, bool isWeakness = false)
     {
         transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-20, 20), transform.localPosition.y + Random.Range(-10, 10), 0);
 
         txtFloatingMessage.text = floatingValue.ToString();
 
         txtFloatingMessage.color = GetMessageColor(floatingMessageType);
+
+        if (isWeakness)
+        {
+            transform.localScale = Vector3.one * 1.2f;
+        }
 
         transform.DOLocalMoveY(transform.localPosition.y + 50, 1f).OnComplete(() => { Destroy(gameObject); });
     }

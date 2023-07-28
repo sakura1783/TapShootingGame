@@ -2771,7 +2771,7 @@ MonoBehaviour:
     bulletSprite: {fileID: 0}
     description: 
     elementType: 0
-  damageRatio: 1.2
+  damageRatio: 1.5
 --- !u!1 &1572101795
 GameObject:
   m_ObjectHideFlags: 0

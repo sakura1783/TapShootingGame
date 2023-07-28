@@ -39,7 +39,7 @@ MonoBehaviour:
     elementType: 1
   - bulletNo: 2
     bulletSpeed: 300
-    bulletPower: 20
+    bulletPower: 15
     Interval: 0.1
     bulletType: 2
     btnSprite: {fileID: -284345961, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
@@ -51,7 +51,7 @@ MonoBehaviour:
     elementType: 2
   - bulletNo: 3
     bulletSpeed: 350
-    bulletPower: 30
+    bulletPower: 20
     Interval: 0.1
     bulletType: 3
     btnSprite: {fileID: -2099913850, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}

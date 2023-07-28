@@ -39,7 +39,10 @@ public class DefenceBase : MonoBehaviour
     {
         if (col.CompareTag("Enemy") || col.CompareTag("EnemyBullet"))
         {
-            int damage = 0;
+            //int damage = 0;  //<= 下の処理に変更
+
+            //タプル型で変数を宣言。2つの型を1つの変数内に用意できる。valueは最終的なダメージ値、isWeaknessは弱点かどうか
+            (int value, bool isWeakness) damage = (0, false);
 
             //侵入してきたコライダーをオフにする(重複判定を防ぐため)
             col.GetComponent<CapsuleCollider2D>().enabled = false;
@@ -56,9 +59,9 @@ public class DefenceBase : MonoBehaviour
                 damage = JudgeDamageToElementType(enemy.enemyData.attackPoint, enemy.enemyData.elementType);
             }
 
-            UpdateDurability(damage);
+            UpdateDurability(damage.value);
 
-            CreateFloatingMessageToDamage(damage);
+            CreateFloatingMessageToDamage(damage.value, damage.isWeakness);
 
             GenerateEnemyAttackEffect(col.gameObject.transform);
 
@@ -116,11 +119,11 @@ public class DefenceBase : MonoBehaviour
     /// エネミーからのダメージ値用のフロート表示の生成
     /// </summary>
     /// <param name="damage"></param>
-    private void CreateFloatingMessageToDamage(int damage)
+    private void CreateFloatingMessageToDamage(int damage, bool isWeakness)
     {
         FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, floatingTran, false);
 
-        floatingMessage.DisplayFloatingMessage(damage, FloatingMessage.FloatingMessageType.PlayerDamage);
+        floatingMessage.DisplayFloatingMessage(damage, FloatingMessage.FloatingMessageType.PlayerDamage, isWeakness);
     }
 
     /// <summary>
@@ -129,17 +132,22 @@ public class DefenceBase : MonoBehaviour
     /// <param name="attackPower"></param>
     /// <param name="attackElementType"></param>
     /// <returns></returns>
-    private int JudgeDamageToElementType(int attackPower, ElementType attackElementType)
+    private (int, bool) JudgeDamageToElementType(int attackPower, ElementType attackElementType)  //<= 戻り値をタプル型に変更
     {
+        //タプル型用に別々の変数を用意する(この変数もタプル型にすれば、1つでも実装可能)
         int lastDamage = attackPower;
+        bool isWeakness = false;
+        //(int lastDamage, bool isWeakness) returnValue = (attackPower, false);
 
         if (ElementCompatibilityHelper.GetElementCompatibility(attackElementType, GameData.instance.GetCurrentBulletData().elementType))
         {
             lastDamage = Mathf.FloorToInt(attackPower * GameData.instance.DamageRatio);
 
+            isWeakness = true;
+
             Debug.Log("弱点です");
         }
 
-        return lastDamage;
+        return (lastDamage, isWeakness);
     }
 }

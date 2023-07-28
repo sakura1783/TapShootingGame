@@ -140,6 +140,8 @@ public class EnemyController : MonoBehaviour
         //ダメージ確定用
         int bulletPower = 0;
 
+        bool isWeakness = false;
+
         //バレットと敵の属性の相性を判定
         if (ElementCompatibilityHelper.GetElementCompatibility(bullet.bulletData.elementType, enemyData.elementType) == true)
         {
@@ -147,6 +149,8 @@ public class EnemyController : MonoBehaviour
 
             //Mathf.FloorToIntで計算結果を切り上げてint型にする
             bulletPower = Mathf.FloorToInt(bullet.bulletData.bulletPower * GameData.instance.DamageRatio);
+
+            isWeakness = true;
         }
         else
         {
@@ -154,7 +158,7 @@ public class EnemyController : MonoBehaviour
             bulletPower = bullet.bulletData.bulletPower;
         }
 
-        CreateFloatingMessageToBulletPower(bulletPower);
+        CreateFloatingMessageToBulletPower(bulletPower, isWeakness);
 
         hp -= bulletPower;
 
@@ -230,11 +234,11 @@ public class EnemyController : MonoBehaviour
     /// <summary>
     /// 弾の攻撃力値分のフロート表示の生成
     /// </summary>
-    private void CreateFloatingMessageToBulletPower(int bulletPower)
+    private void CreateFloatingMessageToBulletPower(int bulletPower, bool isWeakness)
     {
         FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, floatingTran, false);
 
-        floatingMessage.DisplayFloatingMessage(bulletPower, FloatingMessage.FloatingMessageType.EnemyDamage);
+        floatingMessage.DisplayFloatingMessage(bulletPower, FloatingMessage.FloatingMessageType.EnemyDamage, isWeakness);
     }
 
     /// <summary>
