@@ -22,7 +22,7 @@ MonoBehaviour:
     moveDuration: 20
     moveType: 0
     elementType: 4
-    bulletType: 4
+    bulletType: 5
   - enemyNo: 1
     hp: 70
     attackPoint: 15
@@ -42,7 +42,7 @@ MonoBehaviour:
     moveDuration: 15
     moveType: 0
     elementType: 1
-    bulletType: 5
+    bulletType: 6
   - enemyNo: 3
     hp: 200
     attackPoint: 40
@@ -52,4 +52,4 @@ MonoBehaviour:
     moveDuration: 0
     moveType: 2
     elementType: 5
-    bulletType: 6
+    bulletType: 7

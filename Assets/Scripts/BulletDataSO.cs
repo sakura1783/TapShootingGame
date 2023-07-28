@@ -15,6 +15,7 @@ public class BulletDataSO : ScriptableObject
     [Serializable]
     public enum BulletType
     {
+        None,
         Player_Leaf,
         Player_Fire,
         Player_Ice,

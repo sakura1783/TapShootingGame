@@ -311,6 +311,7 @@ public class EnemyGenerator : MonoBehaviour
         Debug.Log($"生成した敵の種類は{spawnEnemyNo}番です");
 
         enemy.SetUpEnemyController(enemyDataSO.enemyDataList[spawnEnemyNo], this);
+        enemy.AdditionalSetUpEnemyController(gameManager.bulletSelectManager.GetBulletData(enemy.enemyData.bulletType));
 
         enemiesList.Add(enemy);
     }
@@ -349,6 +350,7 @@ public class EnemyGenerator : MonoBehaviour
         EnemyController boss = Instantiate(enemyPrefab, transform).GetComponent<EnemyController>();
 
         boss.SetUpEnemyController(enemyDataSO.enemyDataList[3], this);
+        boss.AdditionalSetUpEnemyController(gameManager.bulletSelectManager.GetBulletData(boss.enemyData.bulletType));
 
         enemiesList.Add(boss);
     }

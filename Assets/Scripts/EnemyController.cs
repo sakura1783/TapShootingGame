@@ -92,10 +92,17 @@ public class EnemyController : MonoBehaviour
 
         //Invokeメソッドを実行すると、moveEvent変数に登録されたメソッド(今回は移動用のメソッド)を実行する
         moveEvent.Invoke(transform, enemyData.moveDuration);
+    }
 
-        if (enemyData.moveType == MoveType.Straight || enemyData.moveType == MoveType.Boss_Horizontal)
+    /// <summary>
+    /// 追加設定
+    /// </summary>
+    /// <param name="bulletData"></param>
+    public void AdditionalSetUpEnemyController(BulletDataSO.BulletData bulletData)
+    {
+        if (bulletData != null && enemyData.bulletType != BulletDataSO.BulletType.None)
         {
-            StartCoroutine(EnemyShot());
+            StartCoroutine(EnemyShot(bulletData));
         }
     }
 
@@ -215,19 +222,19 @@ public class EnemyController : MonoBehaviour
     /// 
     /// </summary>
     /// <returns></returns>
-    private IEnumerator EnemyShot()
+    private IEnumerator EnemyShot(BulletDataSO.BulletData bulletData)
     {
         while (true)  //<= 条件にtrueを指定すると無制限のループ処理になる
         {
             GameObject bullet = Instantiate(enemyBulletPrefab, transform);
-            bullet.GetComponent<Bullet>().ShotBullet(enemyGenerator.PrepareGetPlayerDirection(transform.position));
+            bullet.GetComponent<Bullet>().ShotBullet(enemyGenerator.PrepareGetPlayerDirection(transform.position), bulletData);
 
             if (enemyData.moveType == MoveType.Boss_Horizontal)
             {
                 bullet.transform.SetParent(TransformHelper.GetTemporaryObjectContainerTran());
             }
 
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(bulletData.Interval);
         }
     }
 

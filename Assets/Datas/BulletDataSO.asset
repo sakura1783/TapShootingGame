@@ -17,7 +17,7 @@ MonoBehaviour:
     bulletSpeed: 250
     bulletPower: 5
     Interval: 0.1
-    bulletType: 0
+    bulletType: 1
     btnSprite: {fileID: 350365590, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
     needExp: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
     bulletSpeed: 270
     bulletPower: 10
     Interval: 0.1
-    bulletType: 1
+    bulletType: 2
     btnSprite: {fileID: 1510159107, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
     needExp: 10
@@ -41,7 +41,7 @@ MonoBehaviour:
     bulletSpeed: 300
     bulletPower: 15
     Interval: 0.1
-    bulletType: 2
+    bulletType: 3
     btnSprite: {fileID: -284345961, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
     needExp: 20
@@ -53,7 +53,7 @@ MonoBehaviour:
     bulletSpeed: 350
     bulletPower: 20
     Interval: 0.1
-    bulletType: 3
+    bulletType: 4
     btnSprite: {fileID: -2099913850, guid: d3c03a5064e914b968a22bdc5468a1b3, type: 3}
     userType: 0
     needExp: 30
@@ -65,7 +65,7 @@ MonoBehaviour:
     bulletSpeed: 60
     bulletPower: 5
     Interval: 2
-    bulletType: 4
+    bulletType: 5
     btnSprite: {fileID: 0}
     userType: 1
     needExp: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
     bulletSpeed: 70
     bulletPower: 10
     Interval: 2.5
-    bulletType: 5
+    bulletType: 6
     btnSprite: {fileID: 0}
     userType: 1
     needExp: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
     bulletSpeed: 100
     bulletPower: 15
     Interval: 3
-    bulletType: 6
+    bulletType: 7
     btnSprite: {fileID: 0}
     userType: 2
     needExp: 0

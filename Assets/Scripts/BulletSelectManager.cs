@@ -173,4 +173,19 @@ public class BulletSelectManager : MonoBehaviour
     //    //どれも一致しない場合はnullを戻す
     //    return null;
     //}
+
+    /// <summary>
+    /// BulletTypeよりBulletDataを検索して取得
+    /// </summary>
+    /// <param name="bulletType"></param>
+    /// <returns></returns>
+    public BulletDataSO.BulletData GetBulletData(BulletDataSO.BulletType bulletType)
+    {
+        foreach (BulletDataSO.BulletData bulletData in bulletDataSO.bulletDataList.Where(x => x.bulletType == bulletType))
+        {
+            return bulletData;
+        }
+
+        return null;
+    }
 }
