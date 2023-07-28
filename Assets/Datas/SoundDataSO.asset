@@ -17,3 +17,16 @@ MonoBehaviour:
     bgmType: 0
     volume: 0.1
     bgmAudioClip: {fileID: 8300000, guid: adc9b692fdce94e30b21761c73cc287b, type: 3}
+  seDataList:
+  - seNo: 0
+    seType: 0
+    volume: 0.35
+    seAudioClip: {fileID: 8300000, guid: 70f1ac277461b4017bf050908baca335, type: 3}
+  - seNo: 1
+    seType: 1
+    volume: 0.2
+    seAudioClip: {fileID: 8300000, guid: 1e98852376e2d44309f15b0422952362, type: 3}
+  - seNo: 2
+    seType: 2
+    volume: 0.27
+    seAudioClip: {fileID: 8300000, guid: d4a3174159eff49c08e305acf2934063, type: 3}

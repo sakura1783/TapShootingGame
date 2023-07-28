@@ -23,6 +23,7 @@ public class SoundManager : MonoBehaviour
     public bool isMute = false;
 
     private AudioSource[] bgmSources = new AudioSource[1];  //各オーティオファイル再生用のAudioSource
+    private AudioSource[] seSources = new AudioSource[15];  //SE用のAudioSourceを代入するための変数(複数用意しているのは重複して鳴ることを想定)
 
     private bool isCrossFading;
 
@@ -39,7 +40,14 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //BGM用のAudioSource追加
         bgmSources[0] = gameObject.AddComponent<AudioSource>();
+
+        //SE用のAudioSource追加
+        for (int i = 0; i < seSources.Length; i++)
+        {
+            seSources[i] = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     /// <summary>
@@ -55,7 +63,7 @@ public class SoundManager : MonoBehaviour
         {
             StopBGM();
 
-            return;
+            return;  //returnでこのPlayBGMメソッドから出る
         }
 
         ////再生するBGMのBGMDataを取得
@@ -65,7 +73,7 @@ public class SoundManager : MonoBehaviour
         {
             newBgmData = bgmData;
 
-            break;  //TODO returnと何が違う？
+            break;  //breakでこのforeach文から出る
         }
 
         //対象となるデータがなければ処理しない
@@ -170,5 +178,46 @@ public class SoundManager : MonoBehaviour
     {
         bgmSources[0].Play();
         //bgmSources[1].Play();
+    }
+
+    /// <summary>
+    /// SE再生
+    /// </summary>
+    /// <param name="newSEType"></param>
+    public void PlaySE(SoundDataSO.SEType newSEType)
+    {
+        SoundDataSO.SEData newSEData = null;
+
+        foreach (SoundDataSO.SEData seData in soundDataSO.seDataList.Where(x => x.seType == newSEType))
+        {
+            newSEData = seData;
+
+            break;
+        }
+
+        //再生中ではないAudioSourceを使ってSEをならす
+        foreach (AudioSource source in seSources)
+        {
+            if (!source.isPlaying)
+            {
+                source.clip = newSEData.seAudioClip;
+                source.volume = newSEData.volume;
+                source.Play();
+
+                return;
+            }
+        }
+    }
+
+    /// <summary>
+    /// SE停止。全てのSE用のAudioSourceを停止する
+    /// </summary>
+    public void StopSE()
+    {
+        foreach (AudioSource source in seSources)
+        {
+            source.Stop();
+            source.clip = null;
+        }
     }
 }

@@ -66,6 +66,8 @@ public class DefenceBase : MonoBehaviour
             GenerateEnemyAttackEffect(col.gameObject.transform);
 
             Destroy(col.gameObject);
+
+            SoundManager.instance.PlaySE(SoundDataSO.SEType.Damage);
         }
     }
 

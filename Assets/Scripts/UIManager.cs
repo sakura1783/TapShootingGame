@@ -149,6 +149,8 @@ public class UIManager : MonoBehaviour
     {
         isAlerting = true;
 
+        SoundManager.instance.PlaySE(SoundDataSO.SEType.BossAlert);
+
         imgAlertCanvasGroup.transform.parent.gameObject.SetActive(true);
 
         imgAlertCanvasGroup.DOFade(1, 0.5f).SetLoops(6, LoopType.Yoyo);

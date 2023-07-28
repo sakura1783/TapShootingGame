@@ -195,6 +195,8 @@ public class EnemyController : MonoBehaviour
         {
             Destroy(bullet.gameObject);
         }
+
+        SoundManager.instance.PlaySE(SoundDataSO.SEType.Attack);
     }
 
     /// <summary>
