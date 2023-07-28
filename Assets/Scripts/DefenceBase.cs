@@ -47,13 +47,13 @@ public class DefenceBase : MonoBehaviour
             //侵入してきたゲームオブジェクトにBulletクラスがアタッチされていたら
             if (col.TryGetComponent(out Bullet bullet))
             {
-                damage = bullet.bulletPower;
+                damage = JudgeDamageToElementType(bullet.bulletData.bulletPower, bullet.bulletData.elementType);
             }
 
             //上のif文が処理されず、侵入してきたゲームオブジェクトにEnemyControllerクラスがアタッチされていたら
             else if (col.TryGetComponent(out EnemyController enemy))
             {
-                damage = enemy.enemyData.attackPoint;
+                damage = JudgeDamageToElementType(enemy.enemyData.attackPoint, enemy.enemyData.elementType);
             }
 
             UpdateDurability(damage);
@@ -121,5 +121,25 @@ public class DefenceBase : MonoBehaviour
         FloatingMessage floatingMessage = Instantiate(floatingMessagePrefab, floatingTran, false);
 
         floatingMessage.DisplayFloatingMessage(damage, FloatingMessage.FloatingMessageType.PlayerDamage);
+    }
+
+    /// <summary>
+    /// 属性の相性判定を行って、ダメージの最終値と弱点かどうかを判定する
+    /// </summary>
+    /// <param name="attackPower"></param>
+    /// <param name="attackElementType"></param>
+    /// <returns></returns>
+    private int JudgeDamageToElementType(int attackPower, ElementType attackElementType)
+    {
+        int lastDamage = attackPower;
+
+        if (ElementCompatibilityHelper.GetElementCompatibility(attackElementType, GameData.instance.GetCurrentBulletData().elementType))
+        {
+            lastDamage = Mathf.FloorToInt(attackPower * GameData.instance.DamageRatio);
+
+            Debug.Log("弱点です");
+        }
+
+        return lastDamage;
     }
 }

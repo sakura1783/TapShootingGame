@@ -14,6 +14,9 @@ public class GameData : MonoBehaviour
 
     [SerializeField] private BulletDataSO.BulletData currentBulletData;  //使用中のバレットのデータ
 
+    [SerializeField] private float damageRatio;  //属性間の相性によるダメージ倍率
+    public float DamageRatio => damageRatio;
+
 
     private void Awake()
     {
@@ -80,5 +83,14 @@ public class GameData : MonoBehaviour
     //public int GetMaxGenerateCount()
     //{
     //    return maxGenerateCountBase;
+    //}
+
+    /// <summary>
+    /// ダメージ倍率を取得
+    /// </summary>
+    /// <returns></returns>
+    //public float GetDamageRatio()
+    //{
+    //    return damageRatio;
     //}
 }

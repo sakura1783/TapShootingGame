@@ -2770,6 +2770,8 @@ MonoBehaviour:
     duration: 0
     bulletSprite: {fileID: 0}
     description: 
+    elementType: 0
+  damageRatio: 1.2
 --- !u!1 &1572101795
 GameObject:
   m_ObjectHideFlags: 0
@@ -3077,6 +3079,7 @@ MonoBehaviour:
   imgGameStart: {fileID: 1955590002}
   slider: {fileID: 1657355184}
   floatingMessagePrefab: {fileID: 5053769490105292378, guid: 53024170f1b8f41b09717d0b1b254a9e, type: 3}
+  isAlerting: 0
 --- !u!1 &1756101568
 GameObject:
   m_ObjectHideFlags: 0
