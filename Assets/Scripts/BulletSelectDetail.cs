@@ -12,6 +12,7 @@ public class BulletSelectDetail : MonoBehaviour
 
     [SerializeField] private Image imgBulletButton;
     [SerializeField] private Image imgTimeGauge;
+    //[SerializeField] private Image imgElementTypeBackground;  //バレット選択ボタンの背景画像(他ですでに設定してあるので使わない)
 
     public BulletDataSO.BulletData bulletData;
 
@@ -89,6 +90,8 @@ public class BulletSelectDetail : MonoBehaviour
 
             //TODO そのほかに設定する処理を追加
         }
+
+        //imgElementTypeBackground.sprite = bulletSelectManager.GetElementTypeSprite(this.bulletData.elementType);
     }
 
     /// <summary>

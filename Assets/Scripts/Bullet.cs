@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
 {
     //public float bulletSpeed;
 
-    public int bulletPower;
+    //public int bulletPower;
 
     public BulletDataSO.BulletData bulletData;
 

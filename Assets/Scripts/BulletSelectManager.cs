@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BulletSelectManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class BulletSelectManager : MonoBehaviour
 
     private GameManager gameManager;
 
+    //[SerializeField] private ElementDataSO elementDataSO;
+
     
     //void Start()
     //{
@@ -30,12 +33,17 @@ public class BulletSelectManager : MonoBehaviour
     {
         this.gameManager = gameManager;
 
+        //BulletDataSOスクリプタブル・オブジェクトのデータから、利用者の種類がPlayerのバレットの情報だけを代入するListを用意する(プレイヤーと敵のバレットの情報が混在する状態を防ぐ)
+        List<BulletDataSO.BulletData> playerBulletDatas = new();
+
+        //バレットの利用者の種類がPlayerのバレットの情報だけを抽出してListを作成
+        playerBulletDatas = bulletDataSO.bulletDataList.Where(x => x.userType == BulletDataSO.UserType.Player).ToList();
+
         for (int i = 0; i < maxBulletButtonCount; i++)
         {
             BulletSelectDetail bulletSelectDetail = Instantiate(bulletSelectDetailPrefab, bulletButtonTran, false);
 
-            //TODO あとで引数を変更
-            bulletSelectDetail.SetUpBulletSelectDetail(this, bulletDataSO.bulletDataList[i]);
+            bulletSelectDetail.SetUpBulletSelectDetail(this, playerBulletDatas[i]);
 
             bulletSelectDetailList.Add(bulletSelectDetail);
 
@@ -43,8 +51,8 @@ public class BulletSelectManager : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
         }
 
-        //TODO 使用するバレットの情報を初期設定。後で、引数を変更する
-        GameData.instance.SetBulletData(bulletDataSO.bulletDataList[0]);
+        //使用するバレットの情報を初期設定
+        GameData.instance.SetBulletData(playerBulletDatas[0]);
     }
 
     /// <summary>
@@ -146,4 +154,23 @@ public class BulletSelectManager : MonoBehaviour
         //使用可能バレットの確認と更新
         JudgeOpenBullets();
     }
+
+    /// <summary>
+    /// ElementTypeからボタンの背景画像(Sprite)を取得
+    /// </summary>
+    /// <param name="elementType"></param>
+    /// <returns></returns>
+    //public Sprite GetElementTypeSprite(ElementType elementType)
+    //{
+    //    foreach (ElementDataSO.ElementData elementData in elementDataSO.elementDataList)
+    //    {
+    //        if (elementData.elementType == elementType)
+    //        {
+    //            return elementData.elementSprite;
+    //        }
+    //    }
+
+    //    //どれも一致しない場合はnullを戻す
+    //    return null;
+    //}
 }
