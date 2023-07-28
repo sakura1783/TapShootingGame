@@ -41,4 +41,25 @@ public class SoundDataSO : ScriptableObject
     }
 
     public List<SEData> seDataList = new();
+
+
+    public enum VoiceType
+    {
+        Start,
+        Loose,
+        Win,
+        Attack,
+        Damage,
+    }
+
+    [System.Serializable]
+    public class VoiceData
+    {
+        public int voiceNo;
+        public VoiceType voiceType;
+        public float volume;
+        public AudioClip voiceAudioClip;
+    }
+
+    public List<VoiceData> voiceDataList = new();
 }

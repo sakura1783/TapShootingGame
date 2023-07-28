@@ -45,6 +45,8 @@ public class UIManager : MonoBehaviour
         gameClearSetCanvasGroup.DOFade(1, 0.25f)
             .OnComplete(() =>
             {
+                SoundManager.instance.PlayVoice(SoundDataSO.VoiceType.Win);
+
                 imgGameClear.transform.DOScale(new Vector3(1, 1, 1), 1f).SetEase(Ease.InQuad)
                     .OnComplete(() =>
                     {
@@ -131,6 +133,8 @@ public class UIManager : MonoBehaviour
             });
 
         yield return new WaitForSeconds(3f);
+
+        SoundManager.instance.PlayVoice(SoundDataSO.VoiceType.Start);
     }
 
     /// <summary>

@@ -88,6 +88,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void PrepareGameOver()
     {
+        SoundManager.instance.PlayVoice(SoundDataSO.VoiceType.Loose);
+
         uiManager.DisplayGameOverSet();
     }
 

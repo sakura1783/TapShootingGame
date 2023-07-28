@@ -24,8 +24,16 @@ public class SoundManager : MonoBehaviour
 
     private AudioSource[] bgmSources = new AudioSource[1];  //各オーティオファイル再生用のAudioSource
     private AudioSource[] seSources = new AudioSource[15];  //SE用のAudioSourceを代入するための変数(複数用意しているのは重複して鳴ることを想定)
+    private AudioSource voiceSource = new AudioSource();
 
     private bool isCrossFading;
+
+    //ボイスを分類ごとに仕分け
+    private List<SoundDataSO.VoiceData> startVoiceList = new();
+    private List<SoundDataSO.VoiceData> looseVoiceList = new();
+    private List<SoundDataSO.VoiceData> winVoiceList = new();
+    private List<SoundDataSO.VoiceData> attackVoiceList = new();
+    private List<SoundDataSO.VoiceData> damageVoiceList = new();
 
 
     void Awake()
@@ -48,6 +56,12 @@ public class SoundManager : MonoBehaviour
         {
             seSources[i] = gameObject.AddComponent<AudioSource>();
         }
+
+        //ボイス用のAudioSource追加
+        voiceSource = gameObject.AddComponent<AudioSource>();
+
+        //ボイスを種類ごとに仕分けして各Listに追加
+        AssortmentListsToVoices();
     }
 
     /// <summary>
@@ -219,5 +233,101 @@ public class SoundManager : MonoBehaviour
             source.Stop();
             source.clip = null;
         }
+    }
+
+    /// <summary>
+    /// ボイスの種類ごとにListに仕分け
+    /// </summary>
+    private void AssortmentListsToVoices()
+    {
+        foreach (SoundDataSO.VoiceData voiceData in soundDataSO.voiceDataList)
+        {
+            switch (voiceData.voiceType)
+            {
+                case SoundDataSO.VoiceType.Start:
+                    startVoiceList.Add(voiceData);
+                    break;
+
+                case SoundDataSO.VoiceType.Loose:
+                    looseVoiceList.Add(voiceData);
+                    break;
+
+                case SoundDataSO.VoiceType.Win:
+                    winVoiceList.Add(voiceData);
+                    break;
+
+                case SoundDataSO.VoiceType.Attack:
+                    attackVoiceList.Add(voiceData);
+                    break;
+
+                case SoundDataSO.VoiceType.Damage:
+                    damageVoiceList.Add(voiceData);
+                    break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 指定された種類のボイス再生。種類内に複数のボイスがある場合には、その中からランダムな一つを選んで再生
+    /// </summary>
+    /// <param name="voiceType"></param>
+    public void PlayVoice(SoundDataSO.VoiceType voiceType)
+    {
+        //ボイス再生中は重複して再生をしない
+        if (voiceSource.isPlaying)
+        {
+            return;
+        }
+
+        SoundDataSO.VoiceData voiceData = GetVoice(voiceType);
+
+        voiceSource.clip = voiceData.voiceAudioClip;
+        voiceSource.volume = voiceData.volume;
+        voiceSource.Play();
+    }
+
+    /// <summary>
+    /// 指定されたVoiceTypeよりListを設定し、List内にあるVoiceDataをランダムで一つ取得
+    /// </summary>
+    /// <param name="voiceType"></param>
+    /// <returns></returns>
+    private SoundDataSO.VoiceData GetVoice(SoundDataSO.VoiceType voiceType)
+    {
+        List<SoundDataSO.VoiceData> list = new();
+
+        switch (voiceType)
+        {
+            case SoundDataSO.VoiceType.Start:
+                list = startVoiceList;
+                break;
+
+            case SoundDataSO.VoiceType.Loose:
+                list = looseVoiceList;
+                break;
+
+            case SoundDataSO.VoiceType.Win:
+                list = winVoiceList;
+                break;
+
+            case SoundDataSO.VoiceType.Attack:
+                list = attackVoiceList;
+                break;
+
+            case SoundDataSO.VoiceType.Damage:
+                list = damageVoiceList;
+                break;
+        }
+
+        return list[Random.Range(0, list.Count)];
+    }
+
+    /// <summary>
+    /// ボイス停止
+    /// </summary>
+    public void StopVoice()
+    {
+        voiceSource.Stop();
+
+        voiceSource.clip = null;
     }
 }

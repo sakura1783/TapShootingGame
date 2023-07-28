@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
             //GenerateBullet(direction);
             PrepareGenerateBullet(direction);
+
+            SoundManager.instance.PlayVoice(SoundDataSO.VoiceType.Attack);
         }
     }
 
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
             case BulletDataSO.BulletType.Player_Fire:
                 GenerateBullet(direction, bulletData);
                 break;
+
             case BulletDataSO.BulletType.Player_Ice:
                 for (float i = -0.25f; i <= 0.25f; i += 0.5f)
                 {
@@ -65,6 +68,7 @@ public class PlayerController : MonoBehaviour
                     GenerateBullet(new Vector3((direction.x + i), direction.y, direction.z), bulletData);
                 }
                 break;
+
             case BulletDataSO.BulletType.Player_Thunder:
                 for (int i = -1; i < 2; i++)
                 {

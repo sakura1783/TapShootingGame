@@ -68,6 +68,7 @@ public class DefenceBase : MonoBehaviour
             Destroy(col.gameObject);
 
             SoundManager.instance.PlaySE(SoundDataSO.SEType.Damage);
+            SoundManager.instance.PlayVoice(SoundDataSO.VoiceType.Damage);
         }
     }
 
