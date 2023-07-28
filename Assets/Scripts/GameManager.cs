@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
         bulletSelectManager.JudgeOpenBullets();
 
         isSetUpEnd = true;
+
+        SoundManager.instance.PlayBGM(SoundDataSO.BGMType.Battle);
     }
 
     /// <summary>
