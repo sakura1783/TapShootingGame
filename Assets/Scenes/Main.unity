@@ -539,6 +539,7 @@ MonoBehaviour:
   enemyAttackEffectPrefab: {fileID: 4120970815149795566, guid: 92319e9f987844cb98687e8741db3476, type: 3}
   floatingMessagePrefab: {fileID: 5053769490105292378, guid: 53024170f1b8f41b09717d0b1b254a9e, type: 3}
   floatingTran: {fileID: 1854246228}
+  charaAnimationController: {fileID: 220924394}
 --- !u!50 &157418625
 Rigidbody2D:
   serializedVersion: 4
@@ -565,6 +566,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1674161413164302, guid: eef7dbc3fcb9a6b4db5e157a8e96c3df, type: 3}
   m_PrefabInstance: {fileID: 88946109}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &220924394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220924392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086f5ab2a2e734369948fe93c7f7e18d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charaAnim: {fileID: 1249999245}
 --- !u!1 &234276900
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,6 +1001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5271295984595667061, guid: 68f3cbb27fb704853801658abe99d594, type: 3}
+  charaAnimationController: {fileID: 220924394}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,6 +2425,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1233745616}
   m_CullTransparentMesh: 1
+--- !u!95 &1249999245 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95539518672861730, guid: eef7dbc3fcb9a6b4db5e157a8e96c3df, type: 3}
+  m_PrefabInstance: {fileID: 88946109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1261658613
 GameObject:
   m_ObjectHideFlags: 0
@@ -2811,7 +2831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalExp: 300
-  durabilityBase: 200
+  durabilityBase: 5
   currentBulletData:
     bulletNo: 0
     bulletSpeed: 0

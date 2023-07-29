@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     private GameManager gameManager;
 
+    [SerializeField] private CharaAnimationController charaAnimationController;
+
 
     void Update()
     {
@@ -40,6 +42,9 @@ public class PlayerController : MonoBehaviour
 
             //GenerateBullet(direction);
             PrepareGenerateBullet(direction);
+
+            //攻撃アニメ再生
+            charaAnimationController.PlayAnimation(CharaAnimationController.attackParameter);
 
             SoundManager.instance.PlayVoice(SoundDataSO.VoiceType.Attack);
         }

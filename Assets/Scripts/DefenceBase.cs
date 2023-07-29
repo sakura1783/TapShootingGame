@@ -24,6 +24,8 @@ public class DefenceBase : MonoBehaviour
 
     [SerializeField] private Transform floatingTran;
 
+    [SerializeField] private CharaAnimationController charaAnimationController;
+
 
     public void SetUpDefenceBase(GameManager gameManager)
     {
@@ -91,7 +93,13 @@ public class DefenceBase : MonoBehaviour
             gameManager.SwitchGameUp(true);
 
             gameManager.PrepareGameOver();
+
+            //ダウンアニメ再生
+            charaAnimationController.PlayAnimation(CharaAnimationController.downParameter);
         }
+
+        //ヒットアニメ再生
+        charaAnimationController.PlayAnimation(CharaAnimationController.hitParameter);
     }
 
     /// <summary>
