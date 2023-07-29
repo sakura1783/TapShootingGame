@@ -92,7 +92,7 @@ public class BulletSelectDetail : MonoBehaviour
             SwitchActivateBulletButton(true, 1f);
 
             //ボタンの色を変更
-            //ChangeColorToBulletButton(new Color(0.65f, 0.65f, 0.65f));
+            ChangeColorToBulletButton(new Color(0.65f, 0.65f, 0.65f));
         }
 
         //imgElementTypeBackground.sprite = bulletSelectManager.GetElementTypeSprite(this.bulletData.elementType);
@@ -210,10 +210,10 @@ public class BulletSelectDetail : MonoBehaviour
     /// ボタンの色を変更
     /// </summary>
     /// <param name="newColor"></param>
-    //public void ChangeColorToBulletButton(Color newColor)
-    //{
-    //    imgBulletButton.color = newColor;
-    //}
+    public void ChangeColorToBulletButton(Color newColor)
+    {
+        imgBulletButton.color = newColor;
+    }
 
     /// <summary>
     /// コストが支払える状態になった際のアニメ演出
@@ -225,7 +225,8 @@ public class BulletSelectDetail : MonoBehaviour
 
         if (isAnimation)
         {
-            transform.DOShakeScale(0.25f, 1, 10, 45).SetEase(Ease.Linear);  //DOShakeScale(時間、振動の強さ、振動数、手ブレ値)
+            transform.DOShakeScale(0.25f, 1, 10, 45).SetEase(Ease.Linear)  //DOShakeScale(時間、振動の強さ、振動数、手ブレ値)
+                .OnComplete(() => transform.localScale = new Vector3(1, 1, 1));
         }
     }
 }

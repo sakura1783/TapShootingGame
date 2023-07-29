@@ -69,14 +69,18 @@ public class BulletSelectManager : MonoBehaviour
                 //装填中にする
                 bulletSelectDetailList[i].ChangeLoadingBullet(true);
 
-                //bulletSelectDetailList[i].ChangeColorToBulletButton(new Color(0.65f, 0.65f, 0.65f));
+                bulletSelectDetailList[i].ChangeColorToBulletButton(new Color(0.65f, 0.65f, 0.65f));
             }
             else
             {
                 //未装填中にする
                 bulletSelectDetailList[i].ChangeLoadingBullet(false);
 
-                //bulletSelectDetailList[i].ChangeColorToBulletButton(new Color(1f, 1f, 1f));
+                //未装填かつExpがコストを超えていない場合
+                if (bulletSelectDetailList[i].bulletData.needExp <= GameData.instance.GetTotalExp())
+                {
+                    bulletSelectDetailList[i].ChangeColorToBulletButton(new Color(1f, 1f, 1f));
+                }
             }
         }
     }
