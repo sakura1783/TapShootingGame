@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     {
         isSetUpEnd = false;
 
+        SoundManager.instance.InitializeSound();
+
         SwitchGameUp(false);
 
         defenceBase.SetUpDefenceBase(this);
@@ -43,6 +45,8 @@ public class GameManager : MonoBehaviour
         uiManager.HideGameClearSet();
         uiManager.HideGameOverSet();
         uiManager.HideBossAlertSet();
+
+        uiManager.SetUpButtons();
 
         //バレット選択ボタンの生成。この処理が終了するまで、次の処理は動かない
         yield return StartCoroutine(bulletSelectManager.GenerateBulletSelectDetail(this));

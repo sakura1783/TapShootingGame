@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -20,9 +21,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image imgGameClear;
     [SerializeField] private Image imgGameStart;
 
+    [SerializeField] private Button btnRestartGameClear;
+    [SerializeField] private Button btnRestartGameOver;
+
     [SerializeField] private Slider slider;
 
     [SerializeField] private FloatingMessage floatingMessagePrefab;
+
+    [SerializeField] private GameManager gameManager;
 
     public bool isAlerting = false;  //ボスの警告中かどうか。trueの間は、バレット生成できなくする
 
@@ -72,11 +78,18 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void DisplayGameOverSet()
     {
+        gameManager.SwitchGameUp(true);
+
         gameOverSetCanvasGroup.DOFade(1, 1);
 
         string text = "Game Over";
 
-        txtGameOver.DOText(text, 1.5f).SetEase(Ease.Linear);
+        txtGameOver.DOText(text, 1.5f).SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                //画面タップを許可する
+                gameOverSetCanvasGroup.blocksRaycasts = true;
+            });
     }
 
     /// <summary>
@@ -151,6 +164,11 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator PlayBossAlert()
     {
+        if (gameManager.isGameUp)
+        {
+            yield break;
+        }
+
         isAlerting = true;
 
         SoundManager.instance.PlaySE(SoundDataSO.SEType.BossAlert);
@@ -168,5 +186,19 @@ public class UIManager : MonoBehaviour
         imgAlertCanvasGroup.transform.parent.gameObject.SetActive(false);
 
         isAlerting = false;
+    }
+
+    public void SetUpButtons()
+    {
+        btnRestartGameOver.onClick.AddListener(OnClickButtonRestart);
+        btnRestartGameClear.onClick.AddListener(OnClickButtonRestart);
+    }
+
+    /// <summary>
+    /// btnRestartを押した際の処理
+    /// </summary>
+    private void OnClickButtonRestart()
+    {
+        SceneManager.LoadScene("Main");
     }
 }

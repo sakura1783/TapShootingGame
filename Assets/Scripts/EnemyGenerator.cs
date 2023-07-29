@@ -294,6 +294,11 @@ public class EnemyGenerator : MonoBehaviour
     /// </summary>
     private void SpawnEnemy()
     {
+        if (gameManager.isGameUp)
+        {
+            return;
+        }
+
         EnemyController enemy = Instantiate(enemyPrefab, transform, false);
 
         CalculateTotalSpawnRate();
@@ -347,6 +352,11 @@ public class EnemyGenerator : MonoBehaviour
     /// </summary>
     private void SpawnBoss()
     {
+        if (gameManager.isGameUp)
+        {
+            return;
+        }
+
         EnemyController boss = Instantiate(enemyPrefab, transform).GetComponent<EnemyController>();
 
         boss.SetUpEnemyController(enemyDataSO.enemyDataList[3], this);

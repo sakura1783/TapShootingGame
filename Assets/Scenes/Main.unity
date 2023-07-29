@@ -2806,7 +2806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalExp: 300
-  durabilityBase: 200
+  durabilityBase: 5
   currentBulletData:
     bulletNo: 0
     bulletSpeed: 0
@@ -3126,8 +3126,11 @@ MonoBehaviour:
   txtExp: {fileID: 1451877725}
   imgGameClear: {fileID: 108023229}
   imgGameStart: {fileID: 1955590002}
+  btnRestartGameClear: {fileID: 631637064}
+  btnRestartGameOver: {fileID: 1233745618}
   slider: {fileID: 1657355184}
   floatingMessagePrefab: {fileID: 5053769490105292378, guid: 53024170f1b8f41b09717d0b1b254a9e, type: 3}
+  gameManager: {fileID: 1572101797}
   isAlerting: 0
 --- !u!1 &1756101568
 GameObject:

@@ -330,4 +330,14 @@ public class SoundManager : MonoBehaviour
 
         voiceSource.clip = null;
     }
+
+    /// <summary>
+    /// サウンドを初期化
+    /// </summary>
+    public void InitializeSound()
+    {
+        StopBGM();
+        StopSE();
+        StopVoice();
+    }
 }
