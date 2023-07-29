@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform canvasTran;
 
     public bool isSetUpEnd;
+
+    [SerializeField] private GameObject charaObj;
 
 
     IEnumerator Start()
@@ -48,16 +51,27 @@ public class GameManager : MonoBehaviour
 
         uiManager.SetUpButtons();
 
+        //キャラの現在のサイズを保持し、一時、見えなくする
+        float scaleX = charaObj.transform.localScale.x;
+        charaObj.transform.localScale = Vector3.zero;
+
         //バレット選択ボタンの生成。この処理が終了するまで、次の処理は動かない
         yield return StartCoroutine(bulletSelectManager.GenerateBulletSelectDetail(this));
 
         yield return StartCoroutine(uiManager.PlayOpening());
 
+        //キャラ表示(スタート演出の途中でキャラをタイミングよく表示させる)
+        Sequence seqence = DOTween.Sequence();
+        seqence.Append(charaObj.transform.DOScale(Vector3.one * 1.3f, 0.5f).SetEase(Ease.Linear));  //少し大きめに表示
+        seqence.Append(charaObj.transform.DOScale(Vector3.one * scaleX, 0.05f).SetEase(Ease.Linear));  //元の大きさに戻す
+
+        yield return new WaitForSeconds(1.0f);  //演出が終了するまで待機
+
+        SoundManager.instance.PlayBGM(SoundDataSO.BGMType.Battle);
+
         bulletSelectManager.JudgeOpenBullets();
 
         isSetUpEnd = true;
-
-        SoundManager.instance.PlayBGM(SoundDataSO.BGMType.Battle);
     }
 
     /// <summary>

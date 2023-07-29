@@ -560,6 +560,11 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!1 &220924392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1674161413164302, guid: eef7dbc3fcb9a6b4db5e157a8e96c3df, type: 3}
+  m_PrefabInstance: {fileID: 88946109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &234276900
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,6 +2880,7 @@ MonoBehaviour:
   fireworkPrefab: {fileID: 6291158025303584562, guid: 44a9688dae52141808d85408333774a3, type: 3}
   canvasTran: {fileID: 1087220083}
   isSetUpEnd: 0
+  charaObj: {fileID: 220924392}
 --- !u!1 &1599667381
 GameObject:
   m_ObjectHideFlags: 0
