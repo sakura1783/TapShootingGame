@@ -29,6 +29,9 @@ public class BulletSelectDetail : MonoBehaviour
     private bool isCostPaid;  //コスト支払い済みかどうか
     public bool IsCostPaid { get; set; }
 
+    private bool isAnimation;
+    public bool IsAnimation { get; set; }
+
 
     void Update()
     {
@@ -88,7 +91,8 @@ public class BulletSelectDetail : MonoBehaviour
 
             SwitchActivateBulletButton(true, 1f);
 
-            //TODO そのほかに設定する処理を追加
+            //ボタンの色を変更
+            //ChangeColorToBulletButton(new Color(0.65f, 0.65f, 0.65f));
         }
 
         //imgElementTypeBackground.sprite = bulletSelectManager.GetElementTypeSprite(this.bulletData.elementType);
@@ -201,4 +205,27 @@ public class BulletSelectDetail : MonoBehaviour
     //{
     //    isCostPaid = isSet;
     //}
+
+    /// <summary>
+    /// ボタンの色を変更
+    /// </summary>
+    /// <param name="newColor"></param>
+    //public void ChangeColorToBulletButton(Color newColor)
+    //{
+    //    imgBulletButton.color = newColor;
+    //}
+
+    /// <summary>
+    /// コストが支払える状態になった際のアニメ演出
+    /// </summary>
+    /// <param name="isSet"></param>
+    public void OpenBulletAnimation(bool isSet)
+    {
+        isAnimation = isSet;
+
+        if (isAnimation)
+        {
+            transform.DOShakeScale(0.25f, 1, 10, 45).SetEase(Ease.Linear);  //DOShakeScale(時間、振動の強さ、振動数、手ブレ値)
+        }
+    }
 }

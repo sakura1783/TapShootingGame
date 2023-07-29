@@ -371,9 +371,11 @@ public class EnemyGenerator : MonoBehaviour
     /// <param name="exp"></param>
     public void PrepareDisplayTotalExp(int exp)
     {
-        gameManager.uiManager.UpdateDisplayTotalExp(GameData.instance.GetTotalExp());
+        gameManager.uiManager.UpdateDisplayTotalExp(exp);
 
         gameManager.uiManager.CreateFloatingMessageToExp(exp, FloatingMessage.FloatingMessageType.GetExp);
+
+        GameData.instance.UpdateTotalExp(exp);
 
         //使用可能バレット選択ボタンの確認と更新
         gameManager.bulletSelectManager.JudgeOpenBullets();

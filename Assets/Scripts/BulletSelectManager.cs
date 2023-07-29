@@ -69,12 +69,14 @@ public class BulletSelectManager : MonoBehaviour
                 //装填中にする
                 bulletSelectDetailList[i].ChangeLoadingBullet(true);
 
-                Debug.Log($"装填中のバレットのNo : {bulletNo}");
+                //bulletSelectDetailList[i].ChangeColorToBulletButton(new Color(0.65f, 0.65f, 0.65f));
             }
             else
             {
                 //未装填中にする
                 bulletSelectDetailList[i].ChangeLoadingBullet(false);
+
+                //bulletSelectDetailList[i].ChangeColorToBulletButton(new Color(1f, 1f, 1f));
             }
         }
     }
@@ -127,11 +129,21 @@ public class BulletSelectManager : MonoBehaviour
             if (bulletSelectDetail.bulletData.needExp <= totalExp)
             {
                 bulletSelectDetail.SwitchActivateBulletButton(true, 1f);
+
+                if (!bulletSelectDetail.IsAnimation)
+                {
+                    bulletSelectDetail.OpenBulletAnimation(true);
+                }
             }
             //持っているExpの値がバレットに設定されているコストの値以下であれば、そのバレット選択ボタンを非アクティブにしてタップできなくする
             else
             {
                 bulletSelectDetail.SwitchActivateBulletButton(false, 0.5f);
+
+                if (bulletSelectDetail.IsAnimation)
+                {
+                    bulletSelectDetail.OpenBulletAnimation(false);
+                }
             }
         }
     }
@@ -142,14 +154,14 @@ public class BulletSelectManager : MonoBehaviour
     /// <param name="costExp"></param>
     public void SelectedBulletCostPayment(int costExp)
     {
-        //コストの支払い
-        GameData.instance.UpdateTotalExp(-costExp);
-
         //画面のExp表示の更新
-        gameManager.uiManager.UpdateDisplayTotalExp(GameData.instance.GetTotalExp());
+        gameManager.uiManager.UpdateDisplayTotalExp(-costExp);
 
         //フロート表示
         gameManager.uiManager.CreateFloatingMessageToExp(-costExp, FloatingMessage.FloatingMessageType.BulletCost);
+
+        //コストの支払い
+        GameData.instance.UpdateTotalExp(-costExp);
 
         //使用可能バレットの確認と更新
         JudgeOpenBullets();

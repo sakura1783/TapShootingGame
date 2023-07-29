@@ -109,9 +109,23 @@ public class UIManager : MonoBehaviour
     /// TotalExpの更新
     /// </summary>
     /// <param name="totalExp"></param>
-    public void UpdateDisplayTotalExp(int totalExp)
+    public void UpdateDisplayTotalExp(int exp)
     {
-        txtExp.text = totalExp.ToString();
+        //txtExp.text = totalExp.ToString();
+
+        int currentExp = GameData.instance.GetTotalExp();
+
+        int updateExp = currentExp + exp;
+
+        DOTween.To(
+            () => currentExp,  //何に
+            (x) =>             //何を(xは途中の値)
+            {
+                currentExp = x;　　
+                txtExp.text = x.ToString();
+            },
+            updateExp,  //最終的な値
+            1f);        //この時間で
     }
 
     /// <summary>

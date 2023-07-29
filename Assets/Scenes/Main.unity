@@ -2806,7 +2806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalExp: 300
-  durabilityBase: 5
+  durabilityBase: 200
   currentBulletData:
     bulletNo: 0
     bulletSpeed: 0
