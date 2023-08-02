@@ -687,13 +687,13 @@ MonoBehaviour:
   enemiesList: []
   spawnDataList:
   - enemyNo: 0
-    maxSpawnCount: 1
+    maxSpawnCount: 0
     spawnRate: 70
   - enemyNo: 1
-    maxSpawnCount: 1
+    maxSpawnCount: 3
     spawnRate: 50
   - enemyNo: 2
-    maxSpawnCount: 1
+    maxSpawnCount: 0
     spawnRate: 30
 --- !u!1 &318465517
 GameObject:
@@ -2831,7 +2831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalExp: 300
-  durabilityBase: 5
+  durabilityBase: 200
   currentBulletData:
     bulletNo: 0
     bulletSpeed: 0

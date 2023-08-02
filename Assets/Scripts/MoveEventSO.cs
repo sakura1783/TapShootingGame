@@ -55,8 +55,14 @@ public class MoveEventSO : ScriptableObject
     {
         Debug.Log("蛇行");
 
-        tran.DOLocalMoveX(tran.position.x + 150, 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-        tran.DOLocalMoveY(moveLimit, duration);
+        //DOAnchorPosX、DOAnchorPosYの場合(UIのアンカーがMiddle,Centerではない時に使う)
+        RectTransform rectTran = tran.GetComponent<RectTransform>();
+        rectTran.DOAnchorPosX(tran.localPosition.x + 200, 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        rectTran.DOAnchorPosY(moveLimit, duration);
+
+        //DOLocalMoveXの場合
+        //tran.DOLocalMoveX(tran.localPosition.x + 200, 1f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);  //tran.position.xにすると毎回違う幅で動いてしまうので注意
+        //tran.DOLocalMoveY(moveLimit, duration);
     }
 
     /// <summary>
